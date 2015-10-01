@@ -22,7 +22,7 @@
 		"karma-phantomjs-launcher": "^0.2.1",
 		"karma-qunit": "^0.1.5",
 		"karma-requirejs": "^0.2.2",
-		"karma-es6-transpiler-preprocessor": "^0.0.1",
+		"karma-babel-preprocessor": "^5.2.2",
 		"qunitjs": "^1.19.0",
 		"requirejs": "^2.1.20"
 	},
