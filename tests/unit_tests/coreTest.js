@@ -1,7 +1,5 @@
 QUnit.test('Core Test', function(assert) {
     // Setup the various states of the code you want to test and assert conditions.
-    assert.equal(1, 1, '1 === 1');
-    assert.ok(true, 'true is truthy');
-    assert.ok(1, '1 is also truthy');
-    assert.ok([], 'so is an empty array or object');
+	var foo = new InfoboxTemplateBuilder('Andrew\'s Infobox Template Builder');
+    assert.equal(foo.toString(), 'My name is Andrew\'s Infobox Template Builder!', 'toString() Test');
 });

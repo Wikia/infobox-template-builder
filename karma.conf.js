@@ -15,7 +15,7 @@ module.exports = function(config) {
     // list of files / patterns to load in the browser
     files: [
       'test-main.js',
-      {pattern: 'src/*.js', included: false},
+      {pattern: 'src/*.js', included: true},
       {pattern: 'tests/unit_tests/*.js', included: false}
     ],
 
@@ -28,6 +28,7 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
+		'src/*.js': ['es6-transpiler']
     },
 
 
