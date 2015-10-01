@@ -19,6 +19,6 @@ require.config({
   // dynamically load all test files
   deps: allTestFiles,
 
-  // we have to kickoff jasmine, as it is asynchronous
+  // we have to kickoff qunit, as it is asynchronous
   callback: window.__karma__.start
 });
