@@ -35,3 +35,20 @@ export function deepSet(str, val, context = this) {
 
 	return context;
 }
+
+/*
+ * Returns a shallow copy of an array
+ */
+export function copyArray(arr) {
+	return arr.slice(0);
+}
+
+/*
+ * Given an array and two indices, swap the elements in place.
+ */
+export function swapArrayElements(arr, idx1, idx2) {
+	const tmp = arr[idx2];
+	arr[idx2] = arr[idx1];
+	arr[idx1] = tmp;
+	return arr;
+}
