@@ -1,6 +1,10 @@
 'use strict';
+import EventEmitter from 'event-emitter';
+import {deepSet} from './utils';
+import {Model} from './model';
 
-class InfoboxTemplateBuilder {
+export class Core extends Model {
 	constructor() {
+		super();
 	}
 }
