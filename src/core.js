@@ -14,10 +14,10 @@ class Core extends Model {
 
 		const {from} = params;
 
-        /*
+		/*
 		 * If builder is instantiated with a serialized document, we will deconstruct it
 		 * into our internal representation, and populate the builder with those values
-         */
+		 */
 		if (from) {
 
 			[this.data, this.theme] = deserialize(from);

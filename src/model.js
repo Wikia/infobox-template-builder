@@ -15,6 +15,7 @@ export class Model {
 		Object.keys(EventEmitter.prototype).forEach((methodName) => {
 			emitterProxy[methodName] = EventEmitter.prototype[methodName].bind(emitter);
 		});
+
 		Object.assign(this, emitterProxy);
 	}
 
