@@ -2,14 +2,6 @@
 import {Model} from './model';
 
 export class InfoboxThemeData extends Model {
-	const allowed = {
-		linkColor: {
-			type: string
-		},
-		accentColor: {
-			type: string
-		}
-	};
 
 	constructor(properties = {}) {
 		super();
@@ -33,14 +25,7 @@ export class InfoboxThemeData extends Model {
 	}
 
 	set(propName, newValue) {
-		if (
-			!this.allowed[propName] ||
-			!this.allowed[propName].type === typeof propName
-		) {
-			throw new TypeError('Setting property name ' + propName + ' is not allowed');
-		}
+		// do type validation here
 		super.set(propName, newValue);
 	}
 }
-
-module.exports = InfoboxThemeData;

@@ -1,7 +1,6 @@
-import {InfoboxThemeData} from './InfoboxThemeData';
-
 'use strict';
 import {Model} from './model';
+import {InfoboxThemeData} from './InfoboxThemeData';
 import {serialize, deserialize} from './serializers/xml';
 import {persist} from './adapters/mediawiki';
 
@@ -27,7 +26,7 @@ class Core extends Model {
 		} else {
 
 			this.data = null; // new InfoboxData(...);
-			this.theme = null; // new InfoboxThemeData();
+			this.theme = new InfoboxThemeData();
 
 		}
 	}
