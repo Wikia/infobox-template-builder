@@ -3,9 +3,6 @@ import {Model} from './model';
 import {serialize, deserialize} from './serializers/xml';
 import {persist} from './adapters/mediawiki';
 
-export {Core as InfoboxTemplateBuilder};
-
-
 class Core extends Model {
 
 	constructor(params = {}) {
@@ -44,4 +41,7 @@ class Core extends Model {
 }
 
 Core.VERSION = '0.1.0';
+
 window.InfoboxTemplateBuilder = Core;
+
+export {Core as InfoboxTemplateBuilder};
