@@ -1,3 +1,7 @@
+'use strict';
+import EventEmitter from 'event-emitter';
+import {deepSet} from './utils';
+
 /**
  * @class Model
  * @description A simple implemenation of a model class that notifies provides a getter and setter that notifies on property changes
