@@ -1,12 +1,47 @@
 'use strict';
+import {Model} from './model';
+import {serialize, deserialize} from './serializers/xml';
+import {persist} from './adapters/mediawiki';
 
-class InfoboxTemplateBuilder {
-	constructor(name) {
-		this.name = name;
+class Core extends Model {
+
+	constructor(params = {}) {
+
+		super();
+
+		const {from} = params;
+
+		/*
+		 * If builder is instantiated with a serialized document, we will deconstruct it
+		 * into our internal representation, and populate the builder with those values
+		 */
+		if (from) {
+
+			const deserialized = deserialize(from);
+
+			this.data = deserialized.data;
+			this.theme = deserialized.theme;
+
+		} else {
+
+			this.data = null; // new InfoboxData(...);
+			this.theme = null; // new InfoboxThemeData();
+
+		}
 	}
 
-	//temporary, just to make sure the unit tests work
-	toString() {
-		return 'My name is '+ this.name + '!';
+	save() {
+
+		const data = serialize(this.data, this.theme);
+		return this.persist(data)
+			.then(() => this.emit('saved'))
+			.catch((err) => this.emit('errorWhileSaving', err));
+
 	}
 }
+
+Core.VERSION = '0.1.0';
+
+window.InfoboxTemplateBuilder = Core;
+
+export {Core as InfoboxTemplateBuilder};
