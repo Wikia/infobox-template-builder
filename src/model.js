@@ -16,7 +16,7 @@ export class Model {
 			emitterProxy[methodName] = EventEmitter.prototype[methodName].bind(emitter);
 		});
 
-		Object.assign(this, emitterProxy);
+		Object.assign(Object.getPrototypeOf(this), emitterProxy);
 	}
 
 	set(propName, newValue) {

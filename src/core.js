@@ -20,7 +20,10 @@ class Core extends Model {
 		 */
 		if (from) {
 
-			[this.data, this.theme] = deserialize(from);
+			const deserialized = deserialize(from);
+
+			this.data = deserialized.data;
+			this.theme = deserialized.theme;
 
 		} else {
 
