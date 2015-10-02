@@ -2,13 +2,20 @@
 import {Model} from './model';
 import {copyArray, swapArrayElements} from './utils';
 
+const defaultProps = {
+	items: null,
+	theme: null,
+	themeVarName: null,
+	layout: null
+};
+
 export class InfoboxDataModel extends Model {
 
-	constructor(properties = {}) {
+	constructor(properties = defaultProps) {
 		
 		super();
 
-		this.items = null;
+		Object.assign(this, properties);
 		
 		if (properties.items) {
 			this.setItems(properties.items);
