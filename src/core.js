@@ -1,7 +1,8 @@
 'use strict';
+import {InfoboxDataModel} from './infobox-data-model';
 import {Model} from './model';
-import {serialize, deserialize} from './serializers/xml';
 import {persist} from './adapters/mediawiki';
+import {serialize, deserialize} from './serializers/xml';
 
 class Core extends Model {
 
@@ -24,7 +25,7 @@ class Core extends Model {
 
 		} else {
 
-			this.data = null; // new InfoboxData(...);
+			this.data = new InfoboxDataModel();
 			this.theme = null; // new InfoboxThemeData();
 
 		}
