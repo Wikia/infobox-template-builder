@@ -3,9 +3,13 @@ import {Model} from './model';
 import {copyArray, swapArrayElements} from './utils';
 
 export class InfoboxDataModel extends Model {
-	constructor(properties) {
-		this.items = [];
+	constructor(properties = {}) {
 		[this.title = ''] = properties;
+		this.items = null;
+		
+		if (properties.items) {
+			this.setItems(properties.items);
+		}
 	}
 
 	add(item, index = null) {
