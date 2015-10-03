@@ -1,7 +1,7 @@
 import {Model} from '../model';
+import {isString} from '../validators';
 
 const typeMap = {
-	attributes: isAttributeList,
 	boundVariableName: isString,
 	defaultValue: isString,
 	label: isString,
@@ -18,18 +18,29 @@ const defaultProperties = {
 
 export class Field extends Model {
 
-	constructor(defaultProperties = defaultProperties) {
-		Object.assign(this, defaultProperties);
+	constructor(properties = {}) {
+		Object.assign(this, defaultProperties, properties);
 	}
 
-	isString(input) {
-		return typeof input === 'string';
+	set(propName, value) {
+
+		if (typeMap[propName]) {
+			const isValid = typeMap[propName].validator();
+
+			if (!isValid) {
+				throw new TypeError(`${propName} should be of ${typeMap[propName].type}`);
+			}
+		}
+
+		super.set.call(arguments);
 	}
 
 	addAttribute(name, value) {
+
 		if (!this.isString(name) || !this.sString(value)) {
 			throw new TypeError('attribute.name & attribute.value must be a string');
 		}
+
 		this.attributes.push({name, value});
 	} 
 
@@ -40,6 +51,4 @@ export class Field extends Model {
 	set attributes() {
 		throw Error('attributes not settable');
 	}
-
-
 }
