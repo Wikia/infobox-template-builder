@@ -15,7 +15,12 @@ export class Group extends Field {
 		Object.assign(this, defaultProperties, properties);
 		// this.header doesn't exist, a group's <header> tag will be rendered from group.label
 
-		this.addAttribute('layout', properties.layout);
-		this.addAttribute('show', properties.show);
+		if (this.layout) {
+			this.addAttribute('layout', this.layout);
+		}
+
+		if (this.show) {
+			this.addAttribute('show', this.show);
+		}
 	}
 }

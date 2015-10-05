@@ -1,6 +1,6 @@
 'use strict';
-import {InfoboxDataModel} from './infobox-data-model';
-import {Model} from './model';
+import {InfoboxDataModel} from './models/infobox-data';
+import {Model} from './models/base';
 import {persist} from './adapters/mediawiki';
 import {serialize, deserialize} from './serializers/xml';
 

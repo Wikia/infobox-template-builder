@@ -1,11 +1,12 @@
-import {Model} from '../model';
+import {Collection} from '../models/collection';
 import {isString} from '../validators';
 
 const typeMap = {
 	boundVariableName: isString,
 	defaultValue: isString,
 	label: isString,
-	stringTemplate: isString
+	stringTemplate: isString,
+	type: isString
 };
 
 const defaultProperties = {
@@ -13,10 +14,11 @@ const defaultProperties = {
 	boundVariableName: null,
 	defaultValue: null,
 	label: null,
-	stringTemplate: null
+	stringTemplate: null,
+	type: 'data'
 };
 
-export class Field extends Model {
+export class Field extends Collection {
 
 	constructor(properties = {}) {
 		super();
@@ -33,12 +35,12 @@ export class Field extends Model {
 			}
 		}
 
-		super.set.call(arguments);
+		super.set.apply(this, arguments);
 	}
 
 	addAttribute(name, value) {
 
-		if (!this.isString(name) || !this.sString(value)) {
+		if (!isString(name) || !isString(value)) {
 			throw new TypeError('attribute.name & attribute.value must be a string');
 		}
 

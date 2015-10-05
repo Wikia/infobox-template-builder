@@ -1,35 +1,11 @@
-'use strict';
-import {Model} from './model';
-import {copyArray, swapArrayElements} from './utils';
-import {Field, Group} from './types/all';
+import {Model} from './base';
+import {copyArray, swapArrayElements} from '../utils';
 
-const defaultProps = {
-	items: [],
-	theme: null,
-	themeVarName: null,
-	layout: null
-};
-
-export class InfoboxDataModel extends Model {
-
+export class Collection extends Model {
 	constructor(properties = {}) {
-		
 		super();
-
-		Object.assign(this, defaultProps, properties);
-		
-		console.log(properties) 
-		if (properties.items) {
-			this.setItems(properties.items);
-		}
-	}
-
-	newField(params) {
-		return new Field(params);
-	}
-
-	newGroup(params) {
-		return new Group(params);
+		this.items = [];
+		Object.assign(this, properties);
 	}
 
 	add(item, index = null) {

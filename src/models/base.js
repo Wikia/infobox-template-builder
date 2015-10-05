@@ -1,6 +1,6 @@
 'use strict';
 import EventEmitter from 'event-emitter';
-import {deepSet} from './utils';
+import {deepSet} from '../utils';
 
 /**
  * @class Model
