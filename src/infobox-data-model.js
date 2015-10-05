@@ -1,9 +1,10 @@
 'use strict';
 import {Model} from './model';
 import {copyArray, swapArrayElements} from './utils';
+import {Field, Group} from './types/all';
 
 const defaultProps = {
-	items: null,
+	items: [],
 	theme: null,
 	themeVarName: null,
 	layout: null
@@ -11,15 +12,24 @@ const defaultProps = {
 
 export class InfoboxDataModel extends Model {
 
-	constructor(properties = defaultProps) {
+	constructor(properties = {}) {
 		
 		super();
 
-		Object.assign(this, properties);
+		Object.assign(this, defaultProps, properties);
 		
+		console.log(properties) 
 		if (properties.items) {
 			this.setItems(properties.items);
 		}
+	}
+
+	newField(params) {
+		return new Field(params);
+	}
+
+	newGroup(params) {
+		return new Group(params);
 	}
 
 	add(item, index = null) {
@@ -57,7 +67,7 @@ export class InfoboxDataModel extends Model {
 	}
 
 	setItems(itemsArr) {
-		if (itemsArr.isArray()) {
+		if (Array.isArray(itemsArr)) {
 
 			this.set('items', itemsArr);
 			return this.items;

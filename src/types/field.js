@@ -19,6 +19,7 @@ const defaultProperties = {
 export class Field extends Model {
 
 	constructor(properties = {}) {
+		super();
 		Object.assign(this, defaultProperties, properties);
 	}
 
@@ -48,7 +49,7 @@ export class Field extends Model {
 		return this.attributes;
 	}
 
-	set attributes() {
-		throw Error('attributes not settable');
+	set attributes(value) {
+		return false;
 	}
 }

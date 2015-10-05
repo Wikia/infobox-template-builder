@@ -39,7 +39,7 @@ export function deepSet(str, val, context = this) {
 /*
  * Returns a shallow copy of an array
  */
-export function copyArray(arr) {
+export function copyArray(arr = []) {
 	return arr.slice(0);
 }
 

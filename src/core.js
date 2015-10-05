@@ -25,7 +25,7 @@ class Core extends Model {
 
 		} else {
 
-			this.data = new InfoboxDataModel();
+			this.data = new InfoboxDataModel(params.infoboxOptions);
 			this.theme = null; // new InfoboxThemeData();
 
 		}
