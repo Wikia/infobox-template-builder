@@ -17,8 +17,8 @@ export class InfoboxData extends Collection {
 
 		Object.assign(this, defaultProps, properties);
 		
-		if (properties.items) {
-			this.setItems(properties.items);
+		if (this.items) {
+			this.setItems(this.items);
 		}
 	}
 
