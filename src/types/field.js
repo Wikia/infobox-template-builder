@@ -1,3 +1,4 @@
+'use strict';
 import {Model} from '../models/base';
 import {isString} from '../validators';
 import {AttributeMixin} from './mixins';

@@ -4,12 +4,25 @@ import {Model} from './models/base';
 import {persist} from './adapters/mediawiki';
 import {serialize, deserialize} from './serializers/xml';
 
+const defaultProps = {
+	// Options to be passed to InfoboxData constructor
+	infoboxOptions: null,
+	// Options to be passed to InfoboxThemeData constructor
+	themeOptions: null,
+	// The 'from' property's value is a string whose contents are serialized Portable Infobox XML
+	from: null
+};
+
 class Core extends Model {
 
 	constructor(params = {}) {
 
 		super();
 
+		// extend the properties
+		params = Object.assign(defaultProps, params);
+
+		// The for
 		const {from} = params;
 
 		/*
@@ -25,7 +38,8 @@ class Core extends Model {
 
 		} else {
 
-			this.data = new InfoboxDataModel(params.infoboxOptions);
+			// If no 'from' is not defend, we instantiate a fresh infobox
+			this.data = new InfoboxData(params.infoboxOptions);
 			this.theme = null; // new InfoboxThemeData();
 
 		}
@@ -41,8 +55,10 @@ class Core extends Model {
 	}
 }
 
+// semver
 Core.VERSION = '0.1.0';
 
+// export the class for clients that don't use dependency injection
 window.InfoboxTemplateBuilder = Core;
 
 export {Core as InfoboxTemplateBuilder};

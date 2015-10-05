@@ -9,7 +9,7 @@ const defaultProps = {
 	layout: null
 };
 
-export class InfoboxDataModel extends Collection {
+export class InfoboxData extends Collection {
 
 	constructor(properties = {}) {
 		
