@@ -1,4 +1,5 @@
-import {Field} from './field';
+import {Collection} from '../models/collection';
+import {AttributeMixin} from './mixins';
 
 const defaultProperties = {
 	layout: null,
@@ -6,13 +7,14 @@ const defaultProperties = {
 	items: []
 };
 
-export class Group extends Field {
+export class Group extends Collection {
 
 	constructor(properties = {}) {
 
 		super();
+		this._model = 'group';
 
-		Object.assign(this, defaultProperties, properties);
+		Object.assign(this, AttributeMixin, defaultProperties, properties);
 		// this.header doesn't exist, a group's <header> tag will be rendered from group.label
 
 		if (this.layout) {
@@ -22,5 +24,6 @@ export class Group extends Field {
 		if (this.show) {
 			this.addAttribute('show', this.show);
 		}
+
 	}
 }

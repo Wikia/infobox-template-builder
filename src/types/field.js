@@ -1,5 +1,6 @@
-import {Collection} from '../models/collection';
+import {Model} from '../models/base';
 import {isString} from '../validators';
+import {AttributeMixin} from './mixins';
 
 const typeMap = {
 	boundVariableName: isString,
@@ -10,7 +11,6 @@ const typeMap = {
 };
 
 const defaultProperties = {
-	attributes: [],
 	boundVariableName: null,
 	defaultValue: null,
 	label: null,
@@ -18,11 +18,12 @@ const defaultProperties = {
 	type: 'data'
 };
 
-export class Field extends Collection {
+export class Field extends Model {
 
 	constructor(properties = {}) {
 		super();
-		Object.assign(this, defaultProperties, properties);
+		this._model = 'field';
+		Object.assign(this, AttributeMixin, defaultProperties, properties);
 	}
 
 	set(propName, value) {
@@ -36,22 +37,5 @@ export class Field extends Collection {
 		}
 
 		super.set.apply(this, arguments);
-	}
-
-	addAttribute(name, value) {
-
-		if (!isString(name) || !isString(value)) {
-			throw new TypeError('attribute.name & attribute.value must be a string');
-		}
-
-		this.attributes.push({name, value});
-	} 
-
-	get attributes() {
-		return this.attributes;
-	}
-
-	set attributes(value) {
-		return false;
 	}
 }
