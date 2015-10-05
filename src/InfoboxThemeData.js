@@ -15,7 +15,6 @@ export class InfoboxThemeData extends Model {
 
 	setItems(itemsArr) {
 		if (itemsArr.isArray()) {
-
 			this.set('items', itemsArr);
 			return this.items;
 
