@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "dev": "jspm install && python -m SimpleHTTPServer",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -18,13 +19,13 @@
   "homepage": "https://github.com/Wikia/infobox-template-builder",
   "devDependencies": {
     "jspm": "^0.16.11",
-	"karma": "^0.13",
-	"karma-phantomjs-launcher": "^0.2.1",
-	"karma-qunit": "^0.1.5",
-	"karma-requirejs": "^0.2.2",
-	"karma-babel-preprocessor": "^5.2.2",
-	"qunitjs": "^1.19.0",
-	"requirejs": "^2.1.20"
+    "karma": "^0.13",
+    "karma-babel-preprocessor": "^5.2.2",
+    "karma-phantomjs-launcher": "^0.2.1",
+    "karma-qunit": "^0.1.5",
+    "karma-requirejs": "^0.2.2",
+    "qunitjs": "^1.19.0",
+    "requirejs": "^2.1.20"
   },
   "jspm": {
     "configFile": "jspm.config.js",
