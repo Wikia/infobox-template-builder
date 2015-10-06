@@ -1,7 +1,6 @@
 'use strict';
 import {Elem} from './_elem';
 import {isString} from '../validators';
-import {AttributeMixin} from './mixins';
 
 const defaultProperties = {
 	_nodeType: 'image',
