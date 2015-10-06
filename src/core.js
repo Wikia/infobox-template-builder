@@ -6,7 +6,7 @@ import {serialize, deserialize} from './serializers/xml';
 
 const defaultProps = {
 	// Options to be passed to InfoboxData constructor
-	infoboxOptions: null,
+	dataOptions: null,
 	// Options to be passed to InfoboxThemeData constructor
 	themeOptions: null,
 	// The 'from' property's value is a string whose contents are serialized Portable Infobox XML
@@ -39,7 +39,7 @@ class Core extends Model {
 		} else {
 
 			// If no 'from' is not defend, we instantiate a fresh infobox
-			this.data = new InfoboxData(params.infoboxOptions);
+			this.data = new InfoboxData(params.dataOptions);
 			this.theme = null; // new InfoboxThemeData();
 
 		}
