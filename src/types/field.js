@@ -1,7 +1,6 @@
 'use strict';
 import {Elem} from './_elem';
 import {isString} from '../validators';
-import {AttributeMixin} from './mixins';
 
 const defaultProperties = {
 	_nodeType: 'data',
@@ -15,7 +14,7 @@ export class Field extends Elem {
 		
 		super();
 
-		Object.assign(this, AttributeMixin, defaultProperties, properties);
+		Object.assign(this, defaultProperties, properties);
 
 		this.extendValidation({
 			label: isString,

@@ -1,7 +1,6 @@
 'use strict';
 import {Model} from '../models/base';
 import {isString} from '../validators';
-import {AttributeMixin} from './mixins';
 
 const defaultProperties = {
 	_nodeType: 'elem',
@@ -15,7 +14,7 @@ export class Elem extends Model {
 
 		super();
 
-		Object.assign(this, AttributeMixin, defaultProperties, properties);
+		Object.assign(this, defaultProperties, properties);
 
 		this.extendValidation({
 			boundVariableName: isString,
