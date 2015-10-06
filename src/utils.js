@@ -1,3 +1,5 @@
+import {isNumeric} from './validators';
+
 'use strict';
 export function deepSet(str, val, context = this) {
 	var parts,
@@ -48,6 +50,11 @@ export function copyArray(arr = []) {
  */
 export function swapArrayElements(arr, idx1, idx2) {
 	const tmp = arr[idx2];
+
+	if (!isNumeric(idx1) || !isNumeric(idx2)) {
+		throw new TypeError('provided values for idx1 or idx2 must be integers');
+	}
+
 	arr[idx2] = arr[idx1];
 	arr[idx1] = tmp;
 	return arr;

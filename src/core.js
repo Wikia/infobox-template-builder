@@ -22,7 +22,6 @@ class Core extends Model {
 		// extend the properties
 		params = Object.assign(defaultProps, params);
 
-		// The for
 		const {from} = params;
 
 		/*
@@ -38,7 +37,7 @@ class Core extends Model {
 
 		} else {
 
-			// If no 'from' is not defend, we instantiate a fresh infobox
+			// If 'from' is not defined, we instantiate a fresh infobox
 			this.data = new InfoboxData(params.dataOptions);
 			this.theme = null; // new InfoboxThemeData();
 

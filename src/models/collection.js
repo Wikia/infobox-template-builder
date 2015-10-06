@@ -1,4 +1,5 @@
 import {Model} from './base';
+import {isNumeric} from '../validators';
 import {copyArray, swapArrayElements} from '../utils';
 
 export class Collection extends Model {
@@ -23,7 +24,12 @@ export class Collection extends Model {
 
 	remove(index) {
 		const itemsCopy = copyArray(this.items);
+
 		let removed;
+
+		if (!isNumeric(index)) {
+			throw new TypeError('index must be an integer'); 
+		}
 
 		if (index) {
 			removed = itemsCopy.splice(index, 1);
