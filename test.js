@@ -5,8 +5,7 @@ var infobox = new InfoboxTemplateBuilder({});
 var infoData = infobox.data;
 
 // Create a new field
-var title = infoData.newField({
-	type: 'title',
+var title = infoData.newElement('Field', {
 	defaultValue: 'Dang',
 	label: 'Who let the dogs out?',
 	boundVariableName: 'foo'
@@ -16,13 +15,12 @@ var title = infoData.newField({
 infoData.add(title);
 
 // Or create a new group, with that field
-var group = infoData.newGroup({
+var group = infoData.newElement('Group', {
 	items: [title]
 });
 
 // Add more fields to that group
-group.add(infoData.newField({
-	type: 'image',
+group.add(infoData.newElement('Image', {
 	defaultValue: 'dang.png',
 	label: 'Avatar',
 	boundVariableName: 'bar'

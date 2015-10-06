@@ -1,23 +1,23 @@
-import {Collection} from '../models/collection';
+'use strict';
+import {Elem} from './_elem';
 import {isString} from '../validators';
+import {AttributeMixin} from './mixins';
 
 const defaultProperties = {
-	_nodeType: 'group',
-	layout: null,
-	show: null
+	_nodeType: 'image',
+	alt: null,
+	caption: null
 };
 
-export class Group extends Collection {
+export class Image extends Elem {
 
 	constructor(properties = {}) {
-
 		super();
-
 		Object.assign(this, defaultProperties, properties);
 
 		this.extendValidation({
-			layout: isString,
-			show: isString
+			alt: isString,
+			caption: isString
 		});
 	}
 }

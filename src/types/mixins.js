@@ -12,8 +12,8 @@ export const AttributeMixin = Object.create(null, {
 	addAttribute: {
 		writable: false,
 		configurable: false,
-		enumerable: false,
-		value (name, value) {
+		enumerable: true,
+		value(name, value) {
 
 			if (!isString(name) || !isString(value)) {
 				throw new TypeError('attribute.name & attribute.value must be a string');
