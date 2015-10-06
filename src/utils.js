@@ -49,11 +49,12 @@ export function copyArray(arr = []) {
  * Given an array and two indices, swap the elements in place.
  */
 export function swapArrayElements(arr, idx1, idx2) {
-	const tmp = arr[idx2];
 
 	if (!isNumeric(idx1) || !isNumeric(idx2)) {
 		throw new TypeError('provided values for idx1 or idx2 must be integers');
 	}
+
+	const tmp = arr[idx2];
 
 	arr[idx2] = arr[idx1];
 	arr[idx1] = tmp;
