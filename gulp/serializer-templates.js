@@ -4,7 +4,7 @@ var gulp = require('gulp'),
 	module = require('gulp-define-module'),
 	path = 'src/serializers/templates';
 
-gulp.task('precompile-serialize-templates', function(){
+gulp.task('serializer-templates', function(){
 	gulp.src(path + '/src/*.hbs')
 		.pipe(handlebars({
 			handlebars: require('handlebars')
