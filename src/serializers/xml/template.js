@@ -1,3 +1,4 @@
+export const xmlString = `
 <infobox {{#theme}}theme="{{.}}"{{/theme}} {{#themeVarName}}theme-source="{{.}}"{{/themeVarName}} {{#layout}}layout="{{.}}"{{/layout}}>
 	{{#items}}
 		{{#equals 'data' 'data'}}
@@ -18,3 +19,4 @@
 		</{{type}}>
 	{{/items}}
 </infobox>
+`;
