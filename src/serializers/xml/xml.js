@@ -28,7 +28,7 @@ window.serializeData = {
 			"_nodeType": "data",
 			"boundVariableName": "foo",
 			"defaultValue": "Dang",
-			"label": "Who let the dogs out?",
+			"label": "This is the top level item",
 			"stringTemplate": null
 		},
 		{
@@ -39,7 +39,7 @@ window.serializeData = {
 					"_nodeType": "data",
 					"boundVariableName": "foo",
 					"defaultValue": "Dang",
-					"label": "Who let the dogs out?",
+					"label": "This is a group level item",
 					"stringTemplate": null
 				},
 				{
@@ -49,7 +49,7 @@ window.serializeData = {
 					"defaultValue": "dang.png",
 					"alt": null,
 					"caption": null,
-					"label": "Avatar"
+					"label": "Group level avatar"
 				}
 			],
 			"_nodeType": "group",
