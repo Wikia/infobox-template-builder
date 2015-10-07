@@ -1,3 +1,4 @@
+
 // Instantiate a new instance of the infobox
 var infobox = new InfoboxTemplateBuilder({});
 
