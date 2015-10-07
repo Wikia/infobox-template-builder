@@ -1,60 +1,28 @@
 'use strict';
 
-//import Handlebars from './../../node_modules/handlebars/dist/handlebars';
 import * as template from './templates/compiled/templates';
+import {InfoboxData} from '../models/infobox-data';
 
+/**
+ * serialize
+ *
+ * @param data {InfoboxData}
+ * @param theme {InfoboxThemeData}
+ * @return {string} A string of portable infobox data
+ */
 export function serialize(data, theme) {
 	return template.default(data);
 }
 
-window.serializeData = {
-	"validators": {},
-	"items": [
-		{
-			"validators": {},
-			"_nodeType": "data",
-			"boundVariableName": "foo",
-			"defaultValue": "Dang",
-			"label": "Who let the dogs out?",
-			"stringTemplate": null
-		},
-		{
-			"validators": {},
-			"items": [
-				{
-					"validators": {},
-					"_nodeType": "data",
-					"boundVariableName": "foo",
-					"defaultValue": "Dang",
-					"label": "Who let the dogs out?",
-					"stringTemplate": null
-				},
-				{
-					"validators": {},
-					"_nodeType": "image",
-					"boundVariableName": "bar",
-					"defaultValue": "dang.png",
-					"alt": null,
-					"caption": null,
-					"label": "Avatar"
-				}
-			],
-			"_nodeType": "group",
-			"layout": null,
-			"show": null
-		}
-	],
-	"theme": null,
-	"themeVarName": null,
-	"title": null,
-	"layout": null
-};
-
-window.serialize = serialize;
-
+/**
+ * deserialize
+ *
+ * @param doc {string} A string of portable infobox xml
+ * @return {object} an object containing new instances of InfoboxData and InfoboxThemeData
+ */
 export function deserialize(doc) {
 	return {
-		data: null,
-		theme: null
+		data: new InfoboxData(),
+		theme: new InfoboxThemeData()
 	};
 }
