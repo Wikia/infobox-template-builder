@@ -9,7 +9,7 @@ gulp.task('templates', function(){
 		.pipe(handlebars({
 			handlebars: require('handlebars')
 		}))
-		//.pipe(module('commonjs'))
-		//.pipe(concat('compiled.js'))
+		.pipe(module('commonjs'))
+		.pipe(concat('compiled.js'))
 		.pipe(gulp.dest(path));
 });
