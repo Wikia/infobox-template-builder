@@ -17,7 +17,6 @@
   },
   "homepage": "https://github.com/Wikia/infobox-template-builder",
   "devDependencies": {
-    "gulp": "^3.9.0",
     "jspm": "^0.16.11",
     "karma": "^0.13",
     "karma-babel-preprocessor": "^5.2.2",
