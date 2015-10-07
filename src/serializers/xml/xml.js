@@ -20,6 +20,29 @@ export function serialize(data, theme) {
 }
 
 window.serialize = serialize;
+
+window.serializeData1 = {
+	'items': [
+		{
+			_nodeType: "image",
+			alt: {
+				_nodeType: "alt",
+				boundVariableName: "image_alt",
+				defaultValue: "Image Alt",
+				validators: {}
+
+			},
+			caption: {
+				_nodeType: "caption",
+				boundVariableName: "image_caption",
+				defaultValue: "Image Caption",
+				validators: {}
+			},
+			validators: {}
+		}
+	]
+};
+
 window.serializeData = {
 	"validators": {},
 	"items": [
@@ -42,7 +65,6 @@ window.serializeData = {
 			"_nodeType": "image",
 			"boundVariableName": "image_source",
 			"defaultValue": "dang.png",
-			"label": "Group level avatar",
 			"alt": {
 				"boundVariableName": "image_source",
 				"defaultValue": "dang.png"
