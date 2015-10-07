@@ -5,3 +5,7 @@ export function isString(input) {
 export function isNumeric(input) {
 	return !isNaN(parseFloat(n)) && isFinite(n);
 }
+
+export function isObject(input) {
+	return typeof input === 'object';
+}
