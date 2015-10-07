@@ -2,12 +2,10 @@
 import {Elem} from './_elem';
 
 const defaultProperties = {
-	_nodeType: 'image',
-	alt: {},
-	caption: {}
+	_nodeType: 'alt'
 };
 
-export class Image extends Elem {
+export class Alt extends Elem {
 
 	constructor(properties = {}) {
 		super();

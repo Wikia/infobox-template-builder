@@ -25,6 +25,12 @@ window.serializeData = {
 	"items": [
 		{
 			"validators": {},
+			"_nodeType": "title",
+			"boundVariableName": "title_source",
+			"defaultValue": "My Character Infobox"
+		},
+		{
+			"validators": {},
 			"_nodeType": "data",
 			"boundVariableName": "foo",
 			"defaultValue": "Dang",
@@ -33,34 +39,61 @@ window.serializeData = {
 		},
 		{
 			"validators": {},
+			"_nodeType": "image",
+			"boundVariableName": "image_source",
+			"defaultValue": "dang.png",
+			"label": "Group level avatar",
+			"alt": {
+				"boundVariableName": "image_source",
+				"defaultValue": "dang.png"
+			},
+			"caption": {
+				"boundVariableName": "caption",
+				"defaultValue": "Here's a caption"
+			}
+		},
+		{
+			"validators": {},
 			"items": [
+				{
+					"validators": {},
+					"_nodeType": "title",
+					"boundVariableName": "title_source",
+					"defaultValue": "My Character Infobox"
+				},
 				{
 					"validators": {},
 					"_nodeType": "data",
 					"boundVariableName": "foo",
 					"defaultValue": "Dang",
-					"label": "This is a group level item",
+					"label": "This is the top level item",
 					"stringTemplate": null
 				},
 				{
 					"validators": {},
 					"_nodeType": "image",
-					"boundVariableName": "bar",
+					"boundVariableName": "image_source",
 					"defaultValue": "dang.png",
-					"alt": null,
-					"caption": null,
-					"label": "Group level avatar"
+					"label": "Group level avatar",
+					"alt": {
+						"boundVariableName": "image_source",
+						"defaultValue": "dang.png"
+					},
+					"caption": {
+						"boundVariableName": "caption",
+						"defaultValue": "Here's a caption"
+					}
 				}
 			],
 			"_nodeType": "group",
-			"layout": null,
-			"show": null
+			"layout": "horizontal",
+			"show": "incomplete"
 		}
 	],
 	"theme": 'foo-bar',
 	"themeVarName": 'partyTime',
 	"title": null,
-	"layout": null
+	"layout": "horizontal"
 };
 
 /**

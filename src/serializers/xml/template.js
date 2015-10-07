@@ -8,9 +8,15 @@ const data = `
 const image = `
 <image source="{{boundVariableName}}">
 	{{#caption}}
-		<caption source=""></caption>
+		<caption source="{{boundVariableName}}">
+			{{#defaultValue}}<default>{{.}}</default>{{/defaultValue}}
+		</caption>
 	{{/caption}}
-	{{#defaultValue}}<default>{{.}}</default>{{/defaultValue}}
+	{{#alt}}
+		<alt source="{{boundVariableName}}">
+			{{#defaultValue}}<default>{{.}}</default>{{/defaultValue}}
+		</alt>
+	{{/alt}}
 </image>`;
 
 const title = `
