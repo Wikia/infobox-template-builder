@@ -5,8 +5,8 @@
 
 var gulp = require('gulp'),
 	path = require('path'),
-	tasks = ['serializer-templates'];
+	tasks = ['templates'];
 
 gulp.task('watch', tasks, function () {
-	gulp.watch('src/serializers/templates/src/*.hbs', tasks);
+	gulp.watch('src/templates/src/*.hbs', tasks);
 });
