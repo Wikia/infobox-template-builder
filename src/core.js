@@ -2,7 +2,7 @@
 import {InfoboxData} from './models/infobox-data';
 import {Model} from './models/base';
 import {persist} from './adapters/mediawiki';
-import {serialize, deserialize} from './serializers/xml';
+import {serialize, deserialize} from './serializers/xml/serializer';
 
 const defaultProps = {
 	// Options to be passed to InfoboxData constructor

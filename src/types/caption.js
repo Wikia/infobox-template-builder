@@ -3,21 +3,17 @@ import {Elem} from './_elem';
 import {isString} from '../validators';
 
 const defaultProperties = {
-	_nodeType: 'data',
-	label: null,
+	_nodeType: 'caption',
 	stringTemplate: null
 };
 
-export class Field extends Elem {
+export class Caption extends Elem {
 
 	constructor(properties = {}) {
-
 		super();
-
 		Object.assign(this, defaultProperties, properties);
 
 		this.extendValidation({
-			label: isString,
 			stringTemplate: isString
 		});
 	}
