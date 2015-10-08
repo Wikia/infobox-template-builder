@@ -16,7 +16,6 @@ const defaultProps = {
 class Core extends Model {
 
 	constructor(params = {}) {
-
 		super();
 		// extend the properties
 		params = Object.assign(defaultProps, params);

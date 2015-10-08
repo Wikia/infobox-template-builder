@@ -14,9 +14,13 @@ export class Model {
 
 		this.validators = {};
 
+		console.log('In Model constructor');
 		Object.keys(EventEmitter.prototype).forEach((methodName) => {
+			console.log(methodName);
+			console.log('EventEmitter.prototype[' + methodName + '].bind: ' + EventEmitter.prototype[methodName].bind);
 			emitterProxy[methodName] = EventEmitter.prototype[methodName].bind(emitter);
 		});
+		console.log('Model after event emitter');
 
 		Object.assign(Object.getPrototypeOf(this), emitterProxy);
 	}
