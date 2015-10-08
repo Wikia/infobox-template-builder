@@ -34,7 +34,8 @@ export function deserialize(doc) {
 					"validators": {},
 					"_nodeType": "title",
 					"boundVariableName": "title_source",
-					"defaultValue": "My Character Infobox"
+					"defaultValue": "My Character Infobox",
+					"stringTemplate": "${{{title_source}}}"
 				},
 				{
 					"validators": {},
@@ -42,7 +43,7 @@ export function deserialize(doc) {
 					"boundVariableName": "foo",
 					"defaultValue": "Dang",
 					"label": "This is the top level item",
-					"stringTemplate": null
+					"stringTemplate": "${{{foo}}}"
 				},
 				{
 					"validators": {},
@@ -55,7 +56,8 @@ export function deserialize(doc) {
 					},
 					"caption": {
 						"boundVariableName": "caption",
-						"defaultValue": "Here's a caption"
+						"defaultValue": "Here's a caption",
+						"stringTemplate": "${{{caption}}}"
 					}
 				},
 				{
@@ -65,7 +67,8 @@ export function deserialize(doc) {
 							"validators": {},
 							"_nodeType": "title",
 							"boundVariableName": "title_source",
-							"defaultValue": "My Character Infobox"
+							"defaultValue": "My Character Infobox",
+							"stringTemplate": "${{{title_source}}}"
 						},
 						{
 							"validators": {},
@@ -73,21 +76,21 @@ export function deserialize(doc) {
 							"boundVariableName": "foo",
 							"defaultValue": "Dang",
 							"label": "This is the top level item",
-							"stringTemplate": null
+							"stringTemplate": "${{{foo}}}"
 						},
 						{
 							"validators": {},
 							"_nodeType": "image",
 							"boundVariableName": "image_source",
 							"defaultValue": "dang.png",
-							"label": "Group level avatar",
 							"alt": {
 								"boundVariableName": "image_source",
 								"defaultValue": "dang.png"
 							},
 							"caption": {
 								"boundVariableName": "caption",
-								"defaultValue": "Here's a caption"
+								"defaultValue": "Here's a caption",
+								"stringTemplate": "${{{caption}}}"
 							}
 						}
 					],
@@ -101,6 +104,6 @@ export function deserialize(doc) {
 			"title": null,
 			"layout": "horizontal"
 		}),
-		theme: new InfoboxThemeData()
+		theme: null //new InfoboxThemeData()
 	};
 }

@@ -44,3 +44,6 @@ group.add(infoData.newElement('Image', {
 
 // and finally add that group to the infobox data instance
 infoData.add(group);
+
+// return the XML
+infobox.getSerializedData();

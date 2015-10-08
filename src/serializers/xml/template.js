@@ -2,7 +2,7 @@ const data = `
 <data source="{{boundVariableName}}">
 	{{#label}}<label>{{.}}</label>{{/label}}
 	{{#defaultValue}}<default>{{.}}</default>{{/defaultValue}}
-	{{#stringTemplate}}{{/stringTemplate}}
+	{{#stringTemplate}}<format>{{.}}</format>{{/stringTemplate}}
 </data>`;
 
 const image = `
@@ -10,6 +10,7 @@ const image = `
 	{{#caption}}
 		<caption source="{{boundVariableName}}">
 			{{#defaultValue}}<default>{{.}}</default>{{/defaultValue}}
+			{{#stringTemplate}}<format>{{.}}</format>{{/stringTemplate}}
 		</caption>
 	{{/caption}}
 	{{#alt}}
@@ -17,12 +18,14 @@ const image = `
 			{{#defaultValue}}<default>{{.}}</default>{{/defaultValue}}
 		</alt>
 	{{/alt}}
+	{{#defaultValue}}<default>{{.}}</default>{{/defaultValue}}
 </image>`;
 
 const title = `
 <title source="{{boundVariableName}}">
 	{{#label}}<label>{{.}}</label>{{/label}}
 	{{#defaultValue}}<default>{{.}}</default>{{/defaultValue}}
+	{{#stringTemplate}}<format>{{.}}</format>{{/stringTemplate}}
 </title>`;
 
 // headers within groups use the title _nodeType
