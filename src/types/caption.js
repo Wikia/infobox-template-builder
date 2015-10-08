@@ -1,5 +1,6 @@
 'use strict';
 import {Elem} from './_elem';
+import {isString} from '../validators';
 
 const defaultProperties = {
 	_nodeType: 'caption',

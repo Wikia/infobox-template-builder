@@ -13,11 +13,11 @@ const image = `
 			{{#stringTemplate}}<format>{{.}}</format>{{/stringTemplate}}
 		</caption>
 	{{/caption}}
-	{{#alt}}
-		<alt source="{{boundVariableName}}">
-			{{#defaultValue}}<default>{{.}}</default>{{/defaultValue}}
+	{{#if altDefaultValue}}
+		<alt source="{{#if altBoundVariableName}}{{altBoundVariableName}}{{else}}alternative_title{{/if}}">
+			<default>{{altDefaultValue}}</default>
 		</alt>
-	{{/alt}}
+	{{/if}}
 	{{#defaultValue}}<default>{{.}}</default>{{/defaultValue}}
 </image>`;
 

@@ -18,10 +18,8 @@ infoData.add(title);
 var img = infoData.newElement('Image', {
 	defaultValue: 'Dang',
 	boundVariableName: 'foo',
-	alt: infoData.newElement('Alt', {
-		defaultValue: 'Image Alt',
-		boundVariableName: 'image_alt'
-	}),
+	altDefaultValue: 'foo',
+	altBoundVariableName: 'alt_title',
 	caption: infoData.newElement('Caption', {
 		defaultValue: 'Image Caption',
 		boundVariableName: 'image_caption'
@@ -44,6 +42,3 @@ group.add(infoData.newElement('Image', {
 
 // and finally add that group to the infobox data instance
 infoData.add(group);
-
-// return the XML
-infobox.getSerializedData();

@@ -4,7 +4,7 @@ import {isObject, isString} from '../validators';
 
 const defaultProperties = {
 	_nodeType: 'image',
-	altBoundVariable: null,
+	altBoundVariableName: null,
 	altDefaultValue: null,
 	caption: {}
 };
@@ -16,7 +16,7 @@ export class Image extends Elem {
 		Object.assign(this, defaultProperties, properties);
 
 		this.extendValidation({
-			altBoundVariable: isString,
+			altBoundVariableName: isString,
 			altDefaultValue: isString,
 			caption: isObject
 		});
