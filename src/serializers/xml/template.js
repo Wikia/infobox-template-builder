@@ -28,7 +28,7 @@ const title = `
 	{{#stringTemplate}}<format>{{.}}</format>{{/stringTemplate}}
 </title>`;
 
-// headers within groups use the title _nodeType
+// headers within groups use the "title" node type
 const header = `
 <header source="{{boundVariableName}}">
 	{{#label}}<label>{{.}}</label>{{/label}}
@@ -43,11 +43,11 @@ export const xmlString = `
 	{{#layout}}layout="{{.}}"{{/layout}}>
 
 	{{#each items as |item|}}
-		{{#equals _nodeType 'data'}}${data}{{/equals}}
-		{{#equals _nodeType 'image'}}${image}{{/equals}}
-		{{#equals _nodeType 'title'}}${title}{{/equals}}
+		{{#equals item._nodeType 'data'}}${data}{{/equals}}
+		{{#equals item._nodeType 'image'}}${image}{{/equals}}
+		{{#equals item._nodeType 'title'}}${title}{{/equals}}
 
-		{{#equals _nodeType 'group'}}
+		{{#equals item._nodeType 'group'}}
 			<group>
 				{{#each item.items as |groupItem|}}
 					{{#equals groupItem._nodeType 'data'}}${data}{{/equals}}
