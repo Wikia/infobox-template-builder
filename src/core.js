@@ -44,13 +44,9 @@ class Core extends Model {
 		}
 	}
 
-	getSerializedData() {
-		return serialize(this.data, this.theme);
-	}
-
 	save() {
 
-		const data = this.getSerializedData();
+		const data = serialize(this.data, this.theme);
 		return this.persist(data)
 			.then(() => this.emit('saved'))
 			.catch((err) => this.emit('errorWhileSaving', err));
