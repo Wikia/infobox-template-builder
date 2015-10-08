@@ -1,54 +1,6 @@
 'use strict';
-const sample = `<infobox layout="stacked">
-<title source="name">
-<default>{{PAGENAME}}</default>
-</title>
-<image source="image">
-<default>Image:Kratos_rendering_concept.jpg</default>
-</image>
-<data source="caption" />
-<group>
-<header>In-Game Information</header>
-<data source="title">
-<label>Title</label>
-</data>
-<data source="alias">
-<label>Alias/es</label>
-</data>
-<data source="gender">
-<label>Gender</label>
-</data>
-<data source="birthplace">
-<label>Birthplace</label>
-</data>
-<data source="species">
-<label>Species/Race</label>
-</data>
-</group>
-<group>
-<header>Misc. Information</header>
-<data source="family">
-<label>Family Member/s</label>
-</data>
-<data source="status">
-<label>Current status</label>
-</data>
-<data source="location">
-<label>Location</label>
-</data>
-</group>
-<group>
-<header>Behind the Scenes</header>
-<data source="voice actor">
-<label>Voiced by</label>
-</data>
-<data source="appears in">
-<label>Appears in</label>
-</data>
-</group>
-</infobox>`;
-
 import {InfoboxData} from '../models/infobox-data';
+import {isString} from '../validators';
 
 function createElements(child) {
 	const {nodeName} = child;
@@ -115,25 +67,25 @@ export function serialize(data, theme) {
  */
 export function deserialize(doc) {
 
+	if (!isString(doc)) {
+		throw new TypeError('document supplied to deserialize must be a string');
+	}
+
 	const parser = new DOMParser();
 
-	const _doc = parser.parseFromString(sample, 'text/xml');
+	const _doc = parser.parseFromString(doc, 'text/xml');
 
 	const infobox = _doc.querySelector('infobox');
 
 	const infoboxProps = {
 		layout: infobox.getAttribute('layout'),
 		theme: infobox.getAttribute('theme'),
-		themeVarName: infobox.getAttribute('theme-source')
+		themeVarName: infobox.getAttribute('theme-source'),
+		items: Array.prototype.map.call(infobox.children, createElements)
 	};
 
-	const items = Array.prototype.map.call(infobox.children, createElements);
-
-	debugger;
-
-
 	return {
-		data: new InfoboxData(),
-		theme: null//new InfoboxThemeData()
+		data: new InfoboxData(infoboxProps),
+		theme: null //new InfoboxThemeData()
 	};
 }
