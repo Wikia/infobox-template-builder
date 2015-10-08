@@ -7,5 +7,5 @@ export function isNumeric(input) {
 }
 
 export function isObject(input) {
-	return typeof input === 'object';
+	return Object.prototype.toString.call(input) === '[object Object]';
 }
