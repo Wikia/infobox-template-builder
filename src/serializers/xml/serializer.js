@@ -1,6 +1,6 @@
 'use strict';
 import 'handlebars';
-import {equals} from './helpers'
+import {equals} from './helpers';
 import {InfoboxData} from '../../models/infobox-data';
 import {xmlString} from './template';
 import {isString} from '../../validators';
@@ -20,20 +20,24 @@ function createElements(child) {
 
 	switch (nodeName) {
 		case 'title':
-			return create('Title', Object.assign(props, {boundVariableName: defaultTag && defaultTag.textContent}));
+			return create('Title', props);
 
 		case 'image':
 			const altTag  = child.querySelector('alt');
 			const captionTag = child.querySelector('caption');
-			const captionFormatTag = captionTag.querySelector('format');
+			const captionFormatTag = captionTag && captionTag.querySelector('format');
 
-			return create('Image', Object.assign(props, {
+			let imageProps = Object.assign(props, {
 				alt:  altTag && altTag.textContent,
-				caption: create('Caption', Object.assign(props, {
-					value: captionTag && captionTag.textContent,
-					stringTemplate: captionFormatTag && captionFormatTag.textContent
-				})
-			)}));
+			});
+
+			imageProps.caption = create('Caption', {
+				value: captionTag && captionTag.textContent,
+				boundVariableName: captionTag && captionTag.getAttribute('source'),
+				stringTemplate: captionFormatTag && captionFormatTag.textContent
+			});
+
+			return create('Image', imageProps);
 
 		case 'header':
 			return create('Title', Object.assign(props, {value: child.textContent}));
