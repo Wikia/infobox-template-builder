@@ -28,7 +28,7 @@ export class Collection extends Model {
 		let removed;
 
 		if (!isNumeric(index)) {
-			throw new TypeError('index must be an integer'); 
+			throw new TypeError('index must be an integer');
 		}
 
 		if (index) {

@@ -10,9 +10,7 @@ const defaultProperties = {
 export class Group extends Collection {
 
 	constructor(properties = {}) {
-
 		super();
-
 		Object.assign(this, defaultProperties, properties);
 
 		this.extendValidation({

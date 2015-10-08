@@ -1,5 +1,6 @@
 'use strict';
 import {Elem} from './_elem';
+import {isString} from '../validators';
 
 const defaultProperties = {
 	_nodeType: 'title',
@@ -15,6 +16,5 @@ export class Title extends Elem {
 		this.extendValidation({
 			stringTemplate: isString
 		});
-
 	}
 }

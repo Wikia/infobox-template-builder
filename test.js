@@ -6,7 +6,7 @@ var infobox = new InfoboxTemplateBuilder({});
 var infoData = infobox.data;
 
 // Create a new field
-var title = infoData.newElement('Field', {
+var title = infoData.newElement('Title', {
 	defaultValue: 'Dang',
 	label: 'Who let the dogs out?',
 	boundVariableName: 'foo'
