@@ -12,9 +12,10 @@ module.exports = function(config) {
 
 		// list of files / patterns to load in the browser
 		files: [
+			//'jspm_packages/npm/babel-core@5.8.25/browser-polyfill.js'
 			'test-main.js',
-			{pattern: 'src/*.js', included: true},
-			{pattern: 'tests/unit_tests/*.js', included: false}
+			'build.js',
+			{pattern: 'tests/spec/*.js', included: false}
 		],
 
 		// list of files to exclude
