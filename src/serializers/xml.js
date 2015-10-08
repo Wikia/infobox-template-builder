@@ -44,7 +44,7 @@ function createElements(child) {
 			}));
 
 		default:
-			return 'unknown';
+			return null;
 	}
 }
 
