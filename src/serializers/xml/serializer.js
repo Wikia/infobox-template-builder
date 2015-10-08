@@ -11,7 +11,7 @@ function createElements(child) {
 	const {nodeName} = child;
 	const create = InfoboxData.newElement;
 
-	let defaultTag = child.querySelector('default');
+	const defaultTag = child.querySelector('default');
 
 	const props = {
 		defaultValue: defaultTag && defaultTag.textContent,
@@ -25,10 +25,15 @@ function createElements(child) {
 		case 'image':
 			const altTag  = child.querySelector('alt');
 			const captionTag = child.querySelector('caption');
+			const captionFormatTag = captionTag.querySelector('format');
+
 			return create('Image', Object.assign(props, {
 				alt:  altTag && altTag.textContent,
-				caption: captionTag && captionTag.textContent
-			}));
+				caption: create('Caption', Object.assign(props, {
+					value: captionTag && captionTag.textContent,
+					stringTemplate: captionFormatTag && captionFormatTag.textContent
+				})
+			)}));
 
 		case 'header':
 			return create('Title', Object.assign(props, {value: child.textContent}));
