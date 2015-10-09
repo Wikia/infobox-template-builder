@@ -1,5 +1,6 @@
 # Editor
 *.sw[a-z]
+.idea/
 
 # Logs
 logs

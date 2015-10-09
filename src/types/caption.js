@@ -1,21 +1,20 @@
-import {Collection} from '../models/collection';
+'use strict';
+import {Elem} from './_elem';
 import {isString} from '../validators';
 
 const defaultProperties = {
-	_nodeType: 'group',
-	layout: null,
-	show: null
+	_nodeType: 'caption',
+	stringTemplate: null
 };
 
-export class Group extends Collection {
+export class Caption extends Elem {
 
 	constructor(properties = {}) {
 		super();
 		Object.assign(this, defaultProperties, properties);
 
 		this.extendValidation({
-			layout: isString,
-			show: isString
+			stringTemplate: isString
 		});
 	}
 }

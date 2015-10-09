@@ -1,5 +1,11 @@
 'use strict';
-import {InfoboxData} from '../models/infobox-data';
+
+import 'handlebars';
+import {equals} from './helpers'
+import {InfoboxData} from '../../models/infobox-data';
+import {xmlString} from './template';
+
+window.Handlebars.registerHelper('equals', equals);
 
 /**
  * serialize
@@ -9,7 +15,8 @@ import {InfoboxData} from '../models/infobox-data';
  * @return {string} A string of portable infobox data
  */
 export function serialize(data, theme) {
-	return '';
+	var template = Handlebars.compile(xmlString);
+	return template(data);
 }
 
 /**
@@ -21,6 +28,6 @@ export function serialize(data, theme) {
 export function deserialize(doc) {
 	return {
 		data: new InfoboxData(),
-		theme: new InfoboxThemeData()
+		theme: null //new InfoboxThemeData()
 	};
 }
