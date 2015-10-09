@@ -1,25 +1,22 @@
 'use strict';
-import {Model} from '../models/base';
+import {Model} from './base';
 import {isString} from '../validators';
 
 const defaultProperties = {
-	_nodeType: 'elem',
-	boundVariableName: null,
-	defaultValue: null,
-	value: null
+	borderColor: null,
+	accentColor: null
 };
 
-export class Elem extends Model {
+export class InfoboxThemeData extends Model {
 
 	constructor(properties = {}) {
-
 		super();
 
 		Object.assign(this, defaultProperties, properties);
 
 		this.extendValidation({
-			boundVariableName: isString,
-			defaultValue: isString
+			borderColor: isString,
+			accentColor: isString
 		});
 	}
 }
