@@ -7,5 +7,7 @@
  * @return {Promise}
  */
 export function persist(data) {
-	// return Promise
+	return new Promise((resolve) => {
+		resolve();
+	});
 }
