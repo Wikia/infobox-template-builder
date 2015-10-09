@@ -1,5 +1,3 @@
-//require(['../../build']);
-
 if (!Function.prototype.bind) {
   Function.prototype.bind = function (oThis) {
     if (typeof this !== "function") {
@@ -25,8 +23,29 @@ if (!Function.prototype.bind) {
   };
 }
 
-QUnit.test('Core Test', function(assert) {
-	// Setup the various states of the code you want to test and assert conditions.
-	console.log(new InfoboxTemplateBuilder());
-	assert.ok(true);
+define(['build'], function(InfoboxTemplateBuilder) {
+
+//	QUnit.module('InfoboxTemplateBuilder:');
+
+	QUnit.test('constructor()', function(assert) {
+		// Setup the various states of the code you want to test and assert conditions.
+		var infobox = new InfoboxTemplateBuilder();
+		assert.notEqual(infobox, undefined);
+		assert.ok(infobox instanceof InfoboxTemplateBuilder);
+	});
+
+	// QUnit.test('save()', function(assert) {
+	// 	// Setup the various states of the code you want to test and assert conditions.
+	// 	var infobox= new InfoboxTemplateBuilder();
+	// 	var saveValue = infobox.save();
+	// 	assert.notEqual(saveValue, undefined);
+	// });
+	//
+	// QUnit.test('save()', function(assert) {
+	// 	// Setup the various states of the code you want to test and assert conditions.
+	// 	var infobox= new Model();
+	// 	var saveValue = infobox.save();
+	// 	assert.notEqual(saveValue, undefined);
+	// });
+
 });
