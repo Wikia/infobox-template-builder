@@ -16,6 +16,5 @@ export class Title extends Elem {
 		this.extendValidation({
 			stringTemplate: isString
 		});
-
 	}
 }
