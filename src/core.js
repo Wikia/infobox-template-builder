@@ -1,12 +1,9 @@
 'use strict';
-<<<<<<< HEAD
-import {Model} from './model';
-import {InfoboxThemeData} from './InfoboxThemeData';
+
+import {InfoboxThemeData} from './models/infobox-theme-data';
 import {serialize, deserialize} from './serializers/xml';
-=======
 import {InfoboxData} from './models/infobox-data';
 import {Model} from './models/base';
->>>>>>> dev
 import {persist} from './adapters/mediawiki';
 import {serialize, deserialize} from './serializers/xml';
 

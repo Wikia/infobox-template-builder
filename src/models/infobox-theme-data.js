@@ -1,5 +1,5 @@
 'use strict';
-import {Model} from './model';
+import {Model} from './base';
 
 export class InfoboxThemeData extends Model {
 

@@ -1,5 +1,5 @@
 'use strict';
-import {InfoboxThemeData} from '../InfoboxThemeData';
+import {InfoboxThemeData} from '../models/infobox-theme-data';
 import {InfoboxData} from '../models/infobox-data';
 
 /**
