@@ -1,30 +1,22 @@
 'use strict';
 import {Model} from './base';
+import {isString} from '../validators';
+
+const defaultProperties = {
+	borderColor: null,
+	accentColor: null
+};
 
 export class InfoboxThemeData extends Model {
 
 	constructor(properties = {}) {
 		super();
 
-		this.items = null;
+		Object.assign(this, defaultProperties, properties);
 
-		if (properties.items) {
-			this.setItems(properties.items);
-		}
-	}
-
-	setItems(itemsArr) {
-		if (itemsArr.isArray()) {
-			this.set('items', itemsArr);
-			return this.items;
-
-		} else {
-			throw new TypeError('Argument provided to setItems(itemsArr) must be an array');
-		}
-	}
-
-	set(propName, newValue) {
-		// do type validation here
-		super.set(propName, newValue);
+		this.extendValidation({
+			borderColor: isString,
+			accentColor: isString
+		});
 	}
 }
