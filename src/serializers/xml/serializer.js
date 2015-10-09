@@ -3,9 +3,10 @@
 import 'handlebars';
 import {equals} from './helpers'
 import {InfoboxData} from '../../models/infobox-data';
+import {InfoboxThemeData} from '../../models/infobox-theme-data';
 import {xmlString} from './template';
 
-window.Handlebars.registerHelper('equals', equals);
+Handlebars.registerHelper('equals', equals);
 
 /**
  * serialize

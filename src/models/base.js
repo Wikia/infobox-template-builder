@@ -31,7 +31,7 @@ export class Model {
 		const oldValue = this[propName];
 
 		if (this.validators[propName]) {
-			const isValid = this.validators[propName].validator();
+			const isValid = this.validators[propName](newValue);
 
 			if (!isValid) {
 				throw new TypeError(`${propName} should be of ${this.validators[propName].type}`);
