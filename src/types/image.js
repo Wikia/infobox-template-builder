@@ -13,12 +13,13 @@ export class Image extends Elem {
 
 	constructor(properties = {}) {
 		super();
-		Object.assign(this, defaultProperties, properties);
 
 		this.extendValidation({
 			altBoundVariableName: isString,
 			altDefaultValue: isString,
 			caption: isObject
 		});
+
+		this.setProperties(Object.assign(defaultProperties, properties));
 	}
 }

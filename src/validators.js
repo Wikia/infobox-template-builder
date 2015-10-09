@@ -3,7 +3,7 @@ export function isString(input) {
 }
 
 export function isNumeric(input) {
-	return !isNaN(parseFloat(n)) && isFinite(n);
+	return !isNaN(parseFloat(input)) && isFinite(input);
 }
 
 export function isObject(input) {

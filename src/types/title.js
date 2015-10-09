@@ -11,10 +11,11 @@ export class Title extends Elem {
 
 	constructor(properties = {}) {
 		super();
-		Object.assign(this, defaultProperties, properties);
 
 		this.extendValidation({
 			stringTemplate: isString
 		});
+
+		this.setProperties(Object.assign(defaultProperties, properties));
 	}
 }
