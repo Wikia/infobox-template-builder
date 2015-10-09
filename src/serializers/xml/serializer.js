@@ -24,11 +24,13 @@ function createElements(child) {
 
 		case 'image':
 			const altTag  = child.querySelector('alt');
+			const altDefaultTag = altTag && altTag.querySelector('default');
 			const captionTag = child.querySelector('caption');
 			const captionFormatTag = captionTag && captionTag.querySelector('format');
 
 			let imageProps = Object.assign(props, {
-				alt:  altTag && altTag.textContent,
+				altBoundVariableName:  altTag && altTag.getAttribute('source'),
+				altDefaultValue: altDefaultTag && altDefaultTag.textContent
 			});
 
 			imageProps.caption = create('Caption', {
