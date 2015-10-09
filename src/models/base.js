@@ -1,6 +1,6 @@
 'use strict';
 import EventEmitter from 'event-emitter';
-import {deepSet} from './utils';
+import {deepSet} from '../utils';
 
 /**
  * @class Model
@@ -12,6 +12,8 @@ export class Model {
 
 		let emitterProxy = {};
 
+		this.validators = {};
+
 		Object.keys(EventEmitter.prototype).forEach((methodName) => {
 			emitterProxy[methodName] = EventEmitter.prototype[methodName].bind(emitter);
 		});
@@ -19,9 +21,25 @@ export class Model {
 		Object.assign(Object.getPrototypeOf(this), emitterProxy);
 	}
 
+	extendValidation(validators) {
+		Object.keys(validators).forEach(key => {
+			this.validators[key] = validators[key];
+		});
+	}
+
 	set(propName, newValue) {
 		const oldValue = this[propName];
+
+		if (this.validators[propName]) {
+			const isValid = this.validators[propName].validator();
+
+			if (!isValid) {
+				throw new TypeError(`${propName} should be of ${this.validators[propName].type}`);
+			}
+		}
+
 		deepSet.call(this, propName, newValue);
+
 		this.emit('propertyDidChange', {
 			propName,
 			oldValue,
