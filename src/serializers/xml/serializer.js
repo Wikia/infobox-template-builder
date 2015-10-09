@@ -12,6 +12,7 @@ function createElements(child) {
 	const create = InfoboxData.newElement;
 
 	const defaultTag = child.querySelector('default');
+	const formatTag = child.querySelector('format');
 
 	const props = {
 		defaultValue: defaultTag && defaultTag.textContent,
@@ -20,7 +21,9 @@ function createElements(child) {
 
 	switch (nodeName) {
 		case 'title':
-			return create('Title', props);
+			return create('Title', Object.assign(props, {
+				stringTemplate: formatTag && formatTag.textContent
+			}));
 
 		case 'image':
 			const altTag  = child.querySelector('alt');
@@ -46,7 +49,6 @@ function createElements(child) {
 
 		case 'data':
 			const labelTag = child.querySelector('label');
-			const formatTag = child.querySelector('format');
 			return create('Field', Object.assign(props, {
 				label: labelTag && labelTag.textContent,
 				stringTemplate: formatTag && formatTag.textContent
