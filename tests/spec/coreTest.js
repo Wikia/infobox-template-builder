@@ -23,8 +23,7 @@ if (!Function.prototype.bind) {
   };
 }
 
-define(['build'], function(InfoboxTemplateBuilder) {
-
+require(['build'], function(InfoboxTemplateBuilder) {
 //	QUnit.module('InfoboxTemplateBuilder:');
 
 	QUnit.test('constructor()', function(assert) {

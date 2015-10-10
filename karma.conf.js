@@ -8,14 +8,12 @@ module.exports = function(config) {
 		basePath: './',
 
 		// requirejs must be before qunit or else tests will not run
-		frameworks: ['requirejs', 'qunit'],
+		frameworks: ['qunit'],
 
 		// list of files / patterns to load in the browser
 		files: [
-			//'jspm_packages/npm/babel-core@5.8.25/browser-polyfill.js'
-			'test-main.js',
 			'build.js',
-			{pattern: 'tests/spec/*.js', included: false}
+			{pattern: 'tests/spec/*.js'}
 		],
 
 		// list of files to exclude
@@ -23,9 +21,7 @@ module.exports = function(config) {
 
 		// preprocess matching files before serving them to the browser
 		// available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
-		preprocessors: {
-			'src/*.js': ['babel']
-		},
+		preprocessors: {},
 
 		// test results reporter to use
 		// possible values: 'dots', 'progress'

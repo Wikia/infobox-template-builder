@@ -23,7 +23,7 @@
     "karma-qunit": "^0.1.5",
     "karma-requirejs": "^0.2.2",
     "karma-babel-preprocessor": "^5.2.2",
-	"event-emitter": "^0.3.4",
+    "event-emitter": "^0.3.4",
     "qunitjs": "^1.19.0",
     "requirejs": "^2.1.20"
   },
