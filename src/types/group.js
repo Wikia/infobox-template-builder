@@ -17,6 +17,6 @@ export class Group extends Collection {
 			show: isString
 		});
 
-		this.setProperties(Object.assign(defaultProperties, properties));
+		this.setProperties(Object.assign({}, defaultProperties, properties));
 	}
 }
