@@ -6,11 +6,11 @@ import {isString} from '../validators';
 /**
  * persist
  *
- * @param xmlString {string} A serialized string of portable infobox xml
  * @param infoboxTitle {string} Name of the article where the infobox xml will be saved
+ * @param xmlString {string} A serialized string of portable infobox xml
  * @return {jQuery} jQuery promise
  */
-export function persist(xmlString, infoboxTitle) {
+export function persist(infoboxTitle, xmlString) {
 	if (!xmlString || !isString(xmlString) || !infoboxTitle || !isString(infoboxTitle)) {
 		throw new TypeError('Infobox title and value are required');
 	}
