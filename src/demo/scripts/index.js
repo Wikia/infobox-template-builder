@@ -1,6 +1,7 @@
 'use strict';
 
 import {InfoboxTemplateBuilder} from '../../core';
+import {InfoboxData} from '../../models/infobox-data';
 
 let demo = document.getElementById('demo');
 let infobox = new InfoboxTemplateBuilder({
@@ -17,7 +18,7 @@ infobox.on('save', function (data) {
 
 function addTitle () {
 	// Create a new field
-	var title = infoData.newElement('Title', {
+	var title = InfoboxData.newElement('Title', {
 		defaultValue: 'Dang',
 		label: 'Who let the dogs out?',
 		boundVariableName: 'foo'
@@ -29,19 +30,19 @@ function addTitle () {
 
 function addGroup() {
 	// Create a new field
-	var title = infoData.newElement('Title', {
+	var title = InfoboxData.newElement('Title', {
 		defaultValue: 'Default title value',
 		label: 'Title Label',
 		boundVariableName: 'title'
 	});
 
 	// Or create a new group, with that field
-	var group = infoData.newElement('Group', {
+	var group = InfoboxData.newElement('Group', {
 		items: [title]
 	});
 
 	// Add more fields to that group
-	group.add(infoData.newElement('Image', {
+	group.add(InfoboxData.newElement('Image', {
 		defaultValue: 'dang.png',
 		label: 'Avatar',
 		boundVariableName: 'bar'
