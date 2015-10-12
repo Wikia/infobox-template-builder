@@ -1,6 +1,6 @@
 'use strict';
 import 'handlebars';
-import {equals} from './helpers';
+import {equals, formatXml} from './helpers';
 import {InfoboxData} from '../../models/infobox-data';
 import {InfoboxThemeData} from '../../models/infobox-theme-data';
 import {xmlString} from './template';
@@ -76,7 +76,7 @@ function createElements(child) {
  */
 export function serialize(data, theme) {
 	var template = Handlebars.compile(xmlString);
-	return template(data);
+	return formatXml(template(data));
 }
 
 /**
