@@ -15,11 +15,11 @@ export class Elem extends Model {
 
 		super();
 
-		Object.assign(this, defaultProperties, properties);
-
 		this.extendValidation({
 			boundVariableName: isString,
 			defaultValue: isString
 		});
+
+		this.setProperties(Object.assign(defaultProperties, properties));
 	}
 }
