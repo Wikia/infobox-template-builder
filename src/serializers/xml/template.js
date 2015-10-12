@@ -37,16 +37,11 @@ const header = `
 
 
 export const xmlString = `
-<infobox
-	{{#theme}}theme="{{.}}"{{/theme}}
-	{{#themeVarName}}theme-source="{{.}}"{{/themeVarName}}
-	{{#layout}}layout="{{.}}"{{/layout}}>
-
+<infobox {{#theme}}theme="{{.}}"{{/theme}} {{#themeVarName}}theme-source="{{.}}"{{/themeVarName}} {{#layout}}layout="{{.}}"{{/layout}}>
 	{{#each items as |item|}}
 		{{#equals item._nodeType 'data'}}${data}{{/equals}}
 		{{#equals item._nodeType 'image'}}${image}{{/equals}}
 		{{#equals item._nodeType 'title'}}${title}{{/equals}}
-
 		{{#equals item._nodeType 'group'}}
 			<group>
 				{{#each item.items as |groupItem|}}

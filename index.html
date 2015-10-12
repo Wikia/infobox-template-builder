@@ -3,14 +3,73 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width">
+		<style>
+			textarea {
+				display: block;
+				height: 50vh;
+				margin: 20px auto;
+				width: 90%;
+			}
+		</style>
 		<title>Dang</title>
 	</head>
 	<body>
-		body
+		<textarea id="demo">
+      <infobox layout="stacked">
+       <title source="name">
+        <default>{{PAGENAME}}</default>
+       </title>
+       <image source="image">
+        <default>Image:Kratos_rendering_concept.jpg</default>
+       </image>
+       <data source="caption" />
+       <group>
+        <header>In-Game Information</header>
+        <data source="title">
+         <label>Title</label>
+        </data>
+        <data source="alias">
+         <label>Alias/es</label>
+        </data>
+        <data source="gender">
+         <label>Gender</label>
+        </data>
+        <data source="birthplace">
+         <label>Birthplace</label>
+        </data>
+        <data source="species">
+         <label>Species/Race</label>
+        </data>
+       </group>
+       <group>
+        <header>Misc. Information</header>
+        <data source="family">
+         <label>Family Member/s</label>
+        </data>
+        <data source="status">
+         <label>Current status</label>
+        </data>
+        <data source="location">
+         <label>Location</label>
+        </data>
+       </group>
+       <group>
+        <header>Behind the Scenes</header>
+        <data source="voice actor">
+         <label>Voiced by</label>
+        </data>
+        <data source="appears in">
+         <label>Appears in</label>
+        </data>
+       </group>
+      </infobox>
+
+    </textarea>
 	<script src="jspm_packages/system.js"></script>
 	<script src="jspm.config.js"></script>
 	<script>
 		System.import('src/core.js');
+		System.import('src/demo/scripts/index.js');
 	</script>
 	</body>
 </html>
