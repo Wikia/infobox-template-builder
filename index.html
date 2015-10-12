@@ -14,57 +14,8 @@
 		<title>Dang</title>
 	</head>
 	<body>
-		<textarea id="demo">
-      <infobox layout="stacked">
-       <title source="name">
-        <default>{{PAGENAME}}</default>
-       </title>
-       <image source="image">
-        <default>Image:Kratos_rendering_concept.jpg</default>
-       </image>
-       <data source="caption" />
-       <group>
-        <header>In-Game Information</header>
-        <data source="title">
-         <label>Title</label>
-        </data>
-        <data source="alias">
-         <label>Alias/es</label>
-        </data>
-        <data source="gender">
-         <label>Gender</label>
-        </data>
-        <data source="birthplace">
-         <label>Birthplace</label>
-        </data>
-        <data source="species">
-         <label>Species/Race</label>
-        </data>
-       </group>
-       <group>
-        <header>Misc. Information</header>
-        <data source="family">
-         <label>Family Member/s</label>
-        </data>
-        <data source="status">
-         <label>Current status</label>
-        </data>
-        <data source="location">
-         <label>Location</label>
-        </data>
-       </group>
-       <group>
-        <header>Behind the Scenes</header>
-        <data source="voice actor">
-         <label>Voiced by</label>
-        </data>
-        <data source="appears in">
-         <label>Appears in</label>
-        </data>
-       </group>
-      </infobox>
-
-    </textarea>
+    <button onclick="javascript:window.initializeDemo()">Instantiate new infobox</button>
+		<textarea id="demo">Put your infobox XML here!</textarea>
 	<script src="jspm_packages/system.js"></script>
 	<script src="jspm.config.js"></script>
 	<script>
