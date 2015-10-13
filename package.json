@@ -31,8 +31,7 @@
     "configFile": "jspm.config.js",
     "dependencies": {
       "event-emitter": "npm:wolfy87-eventemitter@^4.3.0",
-      "handlebars": "github:components/handlebars.js@^4.0.3",
-      "jquery": "github:components/jquery@^2.1.4"
+      "handlebars": "github:components/handlebars.js@^4.0.3"
     },
     "devDependencies": {
       "babel": "npm:babel-core@^5.8.24",
