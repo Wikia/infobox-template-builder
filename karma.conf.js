@@ -2,7 +2,7 @@
 module.exports = function (config) {
 	'use strict';
 	config.set({
-		autoWatch: true,
+		autoWatch: false,
 		singleRun: true,
 
 		frameworks: ['jspm', 'qunit'],
@@ -14,21 +14,24 @@ module.exports = function (config) {
 		jspm: {
 			config: 'jspm.config.js',
 			loadFiles: [
-				'src/*.spec.js'
+				'src/**/*.spec.js'
 			],
 			serveFiles: [
-				'src/!(*spec).js'
+				'src/**/!(*spec).js'
 			]
 		},
 
 		proxies: {
-			'/base': '/base/src'
+			// '/': '/base'
+			'/src/models/': '/base/src/models/',
+			'/src/': '/base/src/',
+			'/jspm_packages/': '/base/jspm_packages/'
 		},
 
 		browsers: ['PhantomJS'],
 
 		preprocessors: {
-			'src/!(*spec).js': ['babel', 'sourcemap', 'coverage']
+			'src/**/!(*spec).js': ['babel', 'sourcemap', 'coverage']
 		},
 
 		babelPreprocessor: {
@@ -46,7 +49,7 @@ module.exports = function (config) {
 		coverageReporter: {
 			instrumenters: {isparta: require('isparta')},
 			instrumenter: {
-				'src/*.js': 'isparta'
+				'src/**/*.js': 'isparta'
 			},
 
 			reporters: [

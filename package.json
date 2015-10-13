@@ -23,19 +23,15 @@
     "karma-babel-preprocessor": "^5.2.2",
     "karma-phantomjs-launcher": "^0.2.1",
     "karma-qunit": "^0.1.5",
-    "karma-requirejs": "^0.2.2",
     "qunitjs": "^1.19.0",
     "isparta": "^3.0.3",
     "istanbul": "gotwarlost/istanbul.git#source-map",
     "karma-coverage": "douglasduteil/karma-coverage#next",
-    "karma-jspm": "^1.1.5",
+    "karma-jspm": "git://github.com/JeroenVinke/karma-jspm#master",
     "karma-sourcemap-loader": "^0.3.5",
     "phantomjs": "^1.9.17"
   },
   "jspm": {
-    "directories": {
-      "baseURL": "src"
-    },
     "configFile": "jspm.config.js",
     "dependencies": {
       "event-emitter": "npm:wolfy87-eventemitter@^4.3.0",
@@ -48,6 +44,8 @@
     }
   },
   "dependencies": {
-    "handlebars": "^4.0.3"
+    "handlebars": "^4.0.3",
+    "jspm": "^0.16.12",
+    "karma": "^0.12.37"
   }
 }
