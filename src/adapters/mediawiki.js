@@ -35,7 +35,7 @@ export function persist(infoboxTitle, xmlString) {
 function save(xmlString, infoboxTitle, editToken) {
 	return new Promise(function (resolve, reject) {
 		let xhr = new XMLHttpRequest();
-		let data = {
+		const data = {
 			action: 'edit',
 			title: infoboxTitle,
 			text: xmlString,
@@ -44,8 +44,7 @@ function save(xmlString, infoboxTitle, editToken) {
 		};
 
 		xhr.open('POST', '/api.php', true);
-		xhr.setRequestHeader('Content-Type', 'application/json');
-		xhr.send(JSON.stringify(data));
+		xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 		xhr.addEventListener('load', (response) => {
 			if (response && response.edit && response.edit.result === 'Success') {
 				resolve();
@@ -55,6 +54,7 @@ function save(xmlString, infoboxTitle, editToken) {
 				reject();
 			}
 		});
+		xhr.send(serialize(data));
 	});
 }
 
@@ -66,7 +66,7 @@ function save(xmlString, infoboxTitle, editToken) {
 function getEditToken(infoboxTitle) {
 	return new Promise(function (resolve, reject) {
 		let xhr = new XMLHttpRequest();
-		let data = {
+		const data = {
 			action: 'query',
 			prop: 'info',
 			titles: infoboxTitle,
@@ -75,22 +75,31 @@ function getEditToken(infoboxTitle) {
 		};
 
 		xhr.open('POST', '/api.php', true);
-		xhr.setRequestHeader('Content-Type', 'application/json');
-		xhr.send(JSON.stringify(data));
-		xhr.addEventListener('load', (response) => {
-			var editToken,
-				pages = response.query.pages;
-
-			if (pages) {
-				// get edit token from MW API response
-				editToken = pages[Object.keys(pages)[0]].edittoken;
-				if (editToken === undefined) {
-					reject('noedit');
+		xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+		xhr.addEventListener('load', (event) => {
+			if (event.target.status === 200) {
+				const response = JSON.parse(xhr.responseText);
+				const pages = response.query.pages;
+				if (pages) {
+					// get edit token from MW API response
+					const editToken = pages[Object.keys(pages)[0]].edittoken;
+					if (editToken === undefined) {
+						reject('noedit');
+					}
+					resolve(editToken);
+				} else {
+					reject();
 				}
-				resolve(editToken);
 			} else {
 				reject();
 			}
 		});
+		xhr.send(serialize(data));
 	});
+}
+
+function serialize(data) {
+	return Object.keys(data).map((key) =>
+			`${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`
+	).join('&');
 }
