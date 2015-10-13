@@ -1,6 +1,7 @@
 'use strict';
 
 import {isString} from '../validators';
+import {serializeRequestData} from '../utils';
 
 /**
  * persist
@@ -54,7 +55,7 @@ function save(xmlString, infoboxTitle, editToken) {
 				reject();
 			}
 		});
-		xhr.send(serialize(data));
+		xhr.send(serializeRequestData(data));
 	});
 }
 
@@ -94,12 +95,6 @@ function getEditToken(infoboxTitle) {
 				reject();
 			}
 		});
-		xhr.send(serialize(data));
+		xhr.send(serializeRequestData(data));
 	});
-}
-
-function serialize(data) {
-	return Object.keys(data).map((key) =>
-			`${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`
-	).join('&');
 }

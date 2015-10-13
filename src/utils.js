@@ -29,7 +29,7 @@ export function deepSet(str, val, context = this) {
 			context = context[parts[i]];
 
 		} else {
-			
+
 			// if namespace doesn't exist, instantiate it as empty object
 			context = context[parts[i]] = context[parts[i]] || {};
 		}
@@ -59,4 +59,10 @@ export function swapArrayElements(arr, idx1, idx2) {
 	arr[idx2] = arr[idx1];
 	arr[idx1] = tmp;
 	return arr;
+}
+
+export function serializeRequestData(data) {
+	return Object.keys(data).map((key) =>
+			`${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`
+	).join('&');
 }
