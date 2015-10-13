@@ -40,7 +40,7 @@ export function formatXml(xml) {
 		'other->other': 0
 	};
 
-	for (var i = 0; i < lines.length; i++) {
+	for (let i = 0; i < lines.length; i++) {
 		let ln = lines[i];
 		let single = Boolean(ln.match(/<.+\/>/)); // is this line a single tag? ex. <br />
 		let closing = Boolean(ln.match(/<\/.+>/)); // is this a closing tag? ex. </a>
