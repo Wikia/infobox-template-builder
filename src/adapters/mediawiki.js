@@ -11,8 +11,13 @@ import {isString} from '../validators';
  * @return {jQuery} jQuery promise
  */
 export function persist(infoboxTitle, xmlString) {
-	if (!xmlString || !isString(xmlString) || !infoboxTitle || !isString(infoboxTitle)) {
-		throw new TypeError('Infobox title and value are required');
+	if (
+		!xmlString ||
+		!isString(xmlString) ||
+		!infoboxTitle ||
+		!isString(infoboxTitle)
+	) {
+		throw new TypeError('Infobox title and xml are required for saving to MediaWiki');
 	}
 
 	return $.when(getEditToken(infoboxTitle))

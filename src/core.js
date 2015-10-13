@@ -12,7 +12,9 @@ const defaultProps = {
 	// Options to be passed to InfoboxThemeData constructor
 	themeOptions: null,
 	// The 'from' property's value is a string whose contents are serialized Portable Infobox XML
-	from: null
+	from: null,
+	// In the case of mediawiki storage, this is the article title. Otherwise, a string title for the infobox template.
+	title: null
 };
 
 class Core extends Model {
@@ -24,7 +26,11 @@ class Core extends Model {
 		// extend the properties
 		params = Object.assign(defaultProps, params);
 
-		const {from} = params;
+		const {from, title} = params;
+
+		if (title) {
+			this.title = title;
+		}
 
 		/*
 		 * If builder is instantiated with a serialized document, we will deconstruct it
@@ -51,7 +57,7 @@ class Core extends Model {
 	save() {
 
 		const data = this.serialize(this.data, this.theme);
-		return persist(data)
+		return persist(this.title, data)
 			.then(() => this.emit('save', data))
 			.catch((err) => this.emit('errorWhileSaving', err));
 

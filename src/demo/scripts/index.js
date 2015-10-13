@@ -5,7 +5,8 @@ import {InfoboxData} from '../../models/infobox-data';
 
 let demo = document.getElementById('demo');
 let infobox = new InfoboxTemplateBuilder({
-	from: demo.value
+	from: demo.value,
+	title: 'Template:foobox'
 });
 
 // alias the infobox data model for easier handling
