@@ -1,10 +1,9 @@
-import {isNumeric} from './validators';
+import {isNumeric, isString} from './validators';
 
 'use strict';
 export function deepSet(str, val, context = this) {
 	var parts,
-		i,
-		properties;
+		i;
 
 	if (typeof str !== 'string') {
 
@@ -70,4 +69,28 @@ export function serializeRequestData(data) {
 	return Object.keys(data).map((key) =>
 			`${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`
 	).join('&');
+}
+
+export function xhrPost(options) {
+	let xhr = new XMLHttpRequest();
+	let {url, data, success, fail} = options;
+
+	if (!url || !isString(url)) {
+		throw new TypeError('URL string must be provided for an xhr call');
+	}
+
+	xhr.open('POST', url, true);
+	xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+	if (success) {
+		xhr.addEventListener('load', success);
+	}
+	if (fail) {
+		xhr.addEventListener('error', fail);
+	}
+	if (data) {
+		data = serializeRequestData(data);
+	}
+	xhr.send(data || null);
+
+	return xhr;
 }

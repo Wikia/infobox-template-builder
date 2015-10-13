@@ -1,7 +1,7 @@
 'use strict';
 
 import {isString} from '../validators';
-import {serializeRequestData} from '../utils';
+import {xhrPost} from '../utils';
 
 /**
  * persist
@@ -26,6 +26,8 @@ export function persist(infoboxTitle, xmlString) {
 	});
 }
 
+window.persist = persist;
+
 /**
  * Send request to MW API to save infobox article with new data
  * @param xmlString {string} New value for the infobox xml
@@ -35,27 +37,28 @@ export function persist(infoboxTitle, xmlString) {
  */
 function save(xmlString, infoboxTitle, editToken) {
 	return new Promise(function (resolve, reject) {
-		let xhr = new XMLHttpRequest();
-		const data = {
-			action: 'edit',
-			title: infoboxTitle,
-			text: xmlString,
-			token: editToken,
-			format: 'json'
-		};
-
-		xhr.open('POST', '/api.php', true);
-		xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-		xhr.addEventListener('load', (response) => {
-			if (response && response.edit && response.edit.result === 'Success') {
-				resolve();
-			} else if (response && response.error) {
-				reject(response.error.code);
-			} else {
-				reject();
-			}
+		xhrPost({
+			url: '/api.php',
+			data: {
+				action: 'edit',
+				title: infoboxTitle,
+				text: xmlString,
+				token: editToken,
+				format: 'json'
+			},
+			success: (event) => {
+				const xhr = event.target;
+				const response = JSON.parse(xhr.responseText);
+				if (response.edit && response.edit.result === 'Success') {
+					resolve();
+				} else if (response.error) {
+					reject(response.error.code);
+				} else {
+					reject('Bad request');
+				}
+			},
+			fail: () => reject('Bad request')
 		});
-		xhr.send(serializeRequestData(data));
 	});
 }
 
@@ -66,35 +69,35 @@ function save(xmlString, infoboxTitle, editToken) {
  */
 function getEditToken(infoboxTitle) {
 	return new Promise(function (resolve, reject) {
-		let xhr = new XMLHttpRequest();
-		const data = {
-			action: 'query',
-			prop: 'info',
-			titles: infoboxTitle,
-			intoken: 'edit',
-			format: 'json'
-		};
-
-		xhr.open('POST', '/api.php', true);
-		xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-		xhr.addEventListener('load', (event) => {
-			if (event.target.status === 200) {
+		xhrPost({
+			url: '/api.php',
+			data: {
+				action: 'query',
+				prop: 'info',
+				titles: infoboxTitle,
+				intoken: 'edit',
+				format: 'json'
+			},
+			success: function (event) {
+				const xhr = event.target;
 				const response = JSON.parse(xhr.responseText);
-				const pages = response.query.pages;
-				if (pages) {
-					// get edit token from MW API response
-					const editToken = pages[Object.keys(pages)[0]].edittoken;
-					if (editToken === undefined) {
-						reject('noedit');
-					}
-					resolve(editToken);
+				if (response.error) {
+					reject(response.error.code);
 				} else {
-					reject();
+					const pages = response.query.pages;
+					if (pages) {
+						// get edit token from MW API response
+						const editToken = pages[Object.keys(pages)[0]].edittoken;
+						if (editToken === undefined) {
+							reject('No edit token');
+						}
+						resolve(editToken);
+					} else {
+						reject();
+					}
 				}
-			} else {
-				reject();
-			}
+			},
+			fail: () =>	reject('Bad request')
 		});
-		xhr.send(serializeRequestData(data));
 	});
 }
