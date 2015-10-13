@@ -61,6 +61,11 @@ export function swapArrayElements(arr, idx1, idx2) {
 	return arr;
 }
 
+/**
+ * Given a shallow key/value pair, return a string that can be sent as xhr form data
+ * @param data
+ * @returns {string}
+ */
 export function serializeRequestData(data) {
 	return Object.keys(data).map((key) =>
 			`${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`
