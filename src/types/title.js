@@ -16,6 +16,6 @@ export class Title extends Elem {
 			stringTemplate: isString
 		});
 
-		this.setProperties(Object.assign(defaultProperties, properties));
+		this.setProperties(Object.assign({}, defaultProperties, properties));
 	}
 }
