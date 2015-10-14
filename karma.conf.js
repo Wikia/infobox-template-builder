@@ -22,8 +22,6 @@ module.exports = function (config) {
 		},
 
 		proxies: {
-			// '/': '/base'
-			//'/src/models/': '/base/src/models/',
 			'/src/': '/base/src/',
 			'/jspm_packages/': '/base/jspm_packages/'
 		},
