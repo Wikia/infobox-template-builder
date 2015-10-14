@@ -20,6 +20,6 @@ export class Elem extends Model {
 			defaultValue: isString
 		});
 
-		this.setProperties(Object.assign(defaultProperties, properties));
+		this.setProperties(Object.assign({}, defaultProperties, properties));
 	}
 }

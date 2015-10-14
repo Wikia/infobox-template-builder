@@ -20,6 +20,6 @@ export class Image extends Elem {
 			caption: isObject
 		});
 
-		this.setProperties(Object.assign(defaultProperties, properties));
+		this.setProperties(Object.assign({}, defaultProperties, properties));
 	}
 }
