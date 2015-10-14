@@ -93,7 +93,7 @@ function getEditToken(infoboxTitle) {
 					}
 				}
 			},
-			fail: () =>	reject('Bad request')
+			fail: () => reject('Bad request')
 		});
 	});
 }
