@@ -4,11 +4,11 @@ import {isString} from '../validators';
 import {xhrPost} from '../utils';
 
 /**
- * persist
+ * Save infobox XML to MediaWiki
  *
  * @param infoboxTitle {string} Name of the article where the infobox xml will be saved
  * @param xmlString {string} A serialized string of portable infobox xml
- * @return {jQuery} jQuery promise
+ * @return {Promise}
  */
 export function persist(infoboxTitle, xmlString) {
 	if (
@@ -20,10 +20,8 @@ export function persist(infoboxTitle, xmlString) {
 		throw new TypeError('Infobox title and xml are required for saving to MediaWiki');
 	}
 
-	return new Promise(function (resolve, reject) {
-		getEditToken(infoboxTitle)
-			.then(save.bind(null, xmlString, infoboxTitle))
-	});
+	return getEditToken(infoboxTitle)
+			.then(save.bind(null, xmlString, infoboxTitle));
 }
 
 window.persist = persist;
@@ -33,11 +31,11 @@ window.persist = persist;
  * @param xmlString {string} New value for the infobox xml
  * @param infoboxTitle {string} Name of the article where the infobox xml will be saved
  * @param editToken {string} Needed for authenticating request
- * @return {jQuery} jQuery promise
+ * @return {Promise}
  */
 function save(xmlString, infoboxTitle, editToken) {
 	return new Promise(function (resolve, reject) {
-		xhrPost('/api.php', {
+		xhrPost('http://lizlux.liz.wikia-dev.com/api.php', {
 			data: {
 				action: 'edit',
 				title: infoboxTitle,
@@ -64,11 +62,11 @@ function save(xmlString, infoboxTitle, editToken) {
 /**
  * Get an edit token so we can save an article via MW API
  * @param infoboxTitle {string} Name of the article where the infobox xml will be saved
- * @return {jQuery} jQuery promise
+ * @return {Promise}
  */
 function getEditToken(infoboxTitle) {
 	return new Promise(function (resolve, reject) {
-		xhrPost('/api.php', {
+		xhrPost('http://lizlux.liz.wikia-dev.com/api.php', {
 			data: {
 				action: 'query',
 				prop: 'info',
