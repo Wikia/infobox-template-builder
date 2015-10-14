@@ -37,8 +37,7 @@ window.persist = persist;
  */
 function save(xmlString, infoboxTitle, editToken) {
 	return new Promise(function (resolve, reject) {
-		xhrPost({
-			url: '/api.php',
+		xhrPost('/api.php', {
 			data: {
 				action: 'edit',
 				title: infoboxTitle,
@@ -69,8 +68,7 @@ function save(xmlString, infoboxTitle, editToken) {
  */
 function getEditToken(infoboxTitle) {
 	return new Promise(function (resolve, reject) {
-		xhrPost({
-			url: '/api.php',
+		xhrPost('/api.php', {
 			data: {
 				action: 'query',
 				prop: 'info',

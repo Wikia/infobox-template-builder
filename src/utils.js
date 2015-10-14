@@ -71,9 +71,14 @@ export function serializeRequestData(data) {
 	).join('&');
 }
 
-export function xhrPost(options) {
+/**
+ * Helper function for POSTing with XMLHttpRequest
+ * @param url {string} Resource to post to
+ * @param options {object}
+ */
+export function xhrPost(url, options) {
 	let xhr = new XMLHttpRequest();
-	let {url, data, success, fail} = options;
+	let {data, success, fail} = options;
 
 	if (!url || !isString(url)) {
 		throw new TypeError('URL string must be provided for an xhr call');
@@ -81,6 +86,7 @@ export function xhrPost(options) {
 
 	xhr.open('POST', url, true);
 	xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
 	if (success) {
 		xhr.addEventListener('load', success);
 	}
@@ -90,7 +96,6 @@ export function xhrPost(options) {
 	if (data) {
 		data = serializeRequestData(data);
 	}
-	xhr.send(data || null);
 
-	return xhr;
+	xhr.send(data || null);
 }
