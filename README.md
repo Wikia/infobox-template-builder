@@ -2,7 +2,7 @@
 
 ## Public API
 
-### Create a New Infbox Template Builder Instance
+#### Create a New Infbox Template Builder Instance
 ```javascript
 var infobox = new InfoboxTemplateBuilder({
   title: 'Template:FooBox'
@@ -10,7 +10,7 @@ var infobox = new InfoboxTemplateBuilder({
 ```
 The title property is optional for instantiation, and can be added later.
 
-### Create a New Infbox Template Builder Instance with Existing Data
+#### Create a New Infbox Template Builder Instance with Existing Data
 ```javascript
 var infobox = new InfoboxTemplateBuilder({
   from: '<infobox><title src="title"></title></infobox>',
@@ -20,13 +20,13 @@ var infobox = new InfoboxTemplateBuilder({
 
 Upon instantiation, the `infobox` object will have two properties that represent data related to the infobox: `infobox.data`, which is an istance of the `InfoboxData` class, and `infobox.theme`, which is a instance of InfoboxThemeData. 
 
-### InfoboxData
+#### InfoboxData Class
 The `InfoboxData` class is where the structure of the infobox template is stored. This is where you can add, remove, and swap rows in the the infobox template. 
 
-### InfoboxThemeData
+#### InfoboxThemeData Class
 The `InfoboxThemeData` class is where custom styles of the infobox are stored. 
 
-### Adding rows to an infobox
+#### Adding rows to an infobox
 `InfoboxData` has a `newElement` function that is available both statically and via an `InfoboxData` instance. Here's an example usage: 
 ```javascript
 // create infobox instance
