@@ -1,8 +1,10 @@
 'use strict';
+
+import {InfoboxThemeData} from './models/infobox-theme-data';
 import {InfoboxData} from './models/infobox-data';
 import {Model} from './models/base';
 import {persist} from './adapters/mediawiki';
-import {serialize, deserialize} from './serializers/xml';
+import {serialize, deserialize} from './serializers/xml/serializer';
 
 const defaultProps = {
 	// Options to be passed to InfoboxData constructor
@@ -34,19 +36,21 @@ class Core extends Model {
 			this.theme = deserialized.theme;
 
 		} else {
-
 			// If 'from' is not defined, we instantiate a fresh infobox
 			this.data = new InfoboxData(params.dataOptions);
-			this.theme = null; // new InfoboxThemeData();
-
+			this.theme = new InfoboxThemeData();
 		}
+	}
+
+	serialize() {
+		return serialize(this.data, this.theme);
 	}
 
 	save() {
 
-		const data = serialize(this.data, this.theme);
-		return this.persist(data)
-			.then(() => this.emit('saved'))
+		const data = this.serialize(this.data, this.theme);
+		return persist(data)
+			.then(() => this.emit('save', data))
 			.catch((err) => this.emit('errorWhileSaving', err));
 
 	}

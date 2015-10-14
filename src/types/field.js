@@ -11,15 +11,13 @@ const defaultProperties = {
 export class Field extends Elem {
 
 	constructor(properties = {}) {
-		
 		super();
-
-		Object.assign(this, defaultProperties, properties);
 
 		this.extendValidation({
 			label: isString,
-			stringTemplate: isString,
-			type: isString
+			stringTemplate: isString
 		});
+
+		this.setProperties(Object.assign({}, defaultProperties, properties));
 	}
 }

@@ -1,3 +1,4 @@
+
 // Instantiate a new instance of the infobox
 var infobox = new InfoboxTemplateBuilder({});
 
@@ -5,7 +6,7 @@ var infobox = new InfoboxTemplateBuilder({});
 var infoData = infobox.data;
 
 // Create a new field
-var title = infoData.newElement('Field', {
+var title = infoData.newElement('Title', {
 	defaultValue: 'Dang',
 	label: 'Who let the dogs out?',
 	boundVariableName: 'foo'
@@ -13,6 +14,19 @@ var title = infoData.newElement('Field', {
 
 // And add it to the infobox data model instance
 infoData.add(title);
+
+var img = infoData.newElement('Image', {
+	defaultValue: 'Dang',
+	boundVariableName: 'foo',
+	altDefaultValue: 'foo',
+	altBoundVariableName: 'alt_title',
+	caption: infoData.newElement('Caption', {
+		defaultValue: 'Image Caption',
+		boundVariableName: 'image_caption'
+	})
+});
+
+infoData.add(img);
 
 // Or create a new group, with that field
 var group = infoData.newElement('Group', {

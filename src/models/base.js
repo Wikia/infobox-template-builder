@@ -30,11 +30,11 @@ export class Model {
 	set(propName, newValue) {
 		const oldValue = this[propName];
 
-		if (this.validators[propName]) {
-			const isValid = this.validators[propName].validator();
+		if (newValue && this.validators[propName]) {
+			const isValid = this.validators[propName](newValue);
 
 			if (!isValid) {
-				throw new TypeError(`${propName} should be of ${this.validators[propName].type}`);
+				throw new TypeError(`${propName} did not pass the "${this.validators[propName].name}" validator`);
 			}
 		}
 
@@ -50,8 +50,8 @@ export class Model {
 	setProperties(properties) {
 		for (let prop in properties) {
 			this.set(prop, properties[prop]);
-			return properties;
 		}
+		return properties;
 	}
 
 	get(propName) {

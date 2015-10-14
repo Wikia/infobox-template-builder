@@ -2,7 +2,6 @@
 import {Collection} from './collection';
 import * as Types from '../types/all';
 
-
 const defaultProps = {
 	items: [],
 	theme: null,
@@ -14,17 +13,24 @@ const defaultProps = {
 export class InfoboxData extends Collection {
 
 	constructor(properties = {}) {
-		
+
 		super();
 
 		Object.assign(this, defaultProps, properties);
-		
+
 		if (this.items) {
 			this.setItems(this.items);
 		}
 	}
 
-	newElement(elemName, props) {
+	static newElement(elemName, props) {
 		return new Types[elemName](props);
+	}
+
+    /*
+	 * Instance method that is an alias for InfoboxData.newElement
+     */
+	newElement() {
+		return InfoboxData.newElement.apply(null, arguments);
 	}
 }

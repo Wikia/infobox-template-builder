@@ -18,6 +18,7 @@ System.config({
     "babel-runtime": "npm:babel-runtime@5.8.25",
     "core-js": "npm:core-js@1.2.0",
     "event-emitter": "npm:wolfy87-eventemitter@4.3.0",
+    "handlebars": "github:components/handlebars.js@4.0.3",
     "github:jspm/nodelibs-process@0.1.1": {
       "process": "npm:process@0.10.1"
     },

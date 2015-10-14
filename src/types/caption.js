@@ -3,11 +3,11 @@ import {Elem} from './_elem';
 import {isString} from '../validators';
 
 const defaultProperties = {
-	_nodeType: 'title',
+	_nodeType: 'caption',
 	stringTemplate: null
 };
 
-export class Title extends Elem {
+export class Caption extends Elem {
 
 	constructor(properties = {}) {
 		super();

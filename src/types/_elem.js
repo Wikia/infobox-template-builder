@@ -5,7 +5,8 @@ import {isString} from '../validators';
 const defaultProperties = {
 	_nodeType: 'elem',
 	boundVariableName: null,
-	defaultValue: null
+	defaultValue: null,
+	value: null
 };
 
 export class Elem extends Model {
@@ -14,11 +15,11 @@ export class Elem extends Model {
 
 		super();
 
-		Object.assign(this, defaultProperties, properties);
-
 		this.extendValidation({
 			boundVariableName: isString,
 			defaultValue: isString
 		});
+
+		this.setProperties(Object.assign({}, defaultProperties, properties));
 	}
 }
