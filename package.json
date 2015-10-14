@@ -18,18 +18,18 @@
   },
   "homepage": "https://github.com/Wikia/infobox-template-builder",
   "devDependencies": {
-    "jspm": "^0.16.11",
-    "karma": "^0.13",
+    "isparta": "^3.0.3",
+    "istanbul": "^0.3.22",
+    "jspm": "^0.16.12",
+    "karma": "^0.12.37",
     "karma-babel-preprocessor": "^5.2.2",
+    "karma-coverage": "^0.5.2",
+    "karma-jspm": "^2.0.1",
     "karma-phantomjs-launcher": "^0.2.1",
     "karma-qunit": "^0.1.5",
-    "qunitjs": "^1.19.0",
-    "isparta": "^3.0.3",
-    "istanbul": "gotwarlost/istanbul.git#source-map",
-    "karma-coverage": "douglasduteil/karma-coverage#next",
-    "karma-jspm": "git://github.com/JeroenVinke/karma-jspm#master",
     "karma-sourcemap-loader": "^0.3.5",
-    "phantomjs": "^1.9.17"
+    "phantomjs": "^1.9.17",
+    "qunitjs": "^1.19.0"
   },
   "jspm": {
     "configFile": "jspm.config.js",
