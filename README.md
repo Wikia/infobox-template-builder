@@ -2,8 +2,7 @@
 
 ## Public API
 
-### Create an Infbox Template Builder Instance
-#### Brand new infobox template:
+### Create a New Infbox Template Builder Instance
 ```javascript
 var infobox = new InfoboxTemplateBuilder({
   title: 'Template:FooBox'
@@ -11,7 +10,7 @@ var infobox = new InfoboxTemplateBuilder({
 ```
 The title property is optional for instantiation, and can be added later.
 
-#### Infobox template based on existing data:
+### Create a New Infbox Template Builder Instance with Existing Data
 ```javascript
 var infobox = new InfoboxTemplateBuilder({
   from: '<infobox><title src="title"></title></infobox>',
