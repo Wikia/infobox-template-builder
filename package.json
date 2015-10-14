@@ -44,8 +44,6 @@
     }
   },
   "dependencies": {
-    "handlebars": "^4.0.3",
-    "jspm": "^0.16.12",
-    "karma": "^0.12.37"
+    "handlebars": "^4.0.3"
   }
 }
