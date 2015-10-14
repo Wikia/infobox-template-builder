@@ -2,15 +2,14 @@
 
 ## Public API
 
-#### Create a New Infbox Template Builder Instance
+#### Create a new infbox template builder instance
 ```javascript
 var infobox = new InfoboxTemplateBuilder({
-  title: 'Template:FooBox'
+  title: 'Template:FooBox' // optional, can be added later
 });
 ```
-The title property is optional for instantiation, and can be added later.
 
-#### Create a New Infbox Template Builder Instance with Existing Data
+#### Create from existing data
 ```javascript
 var infobox = new InfoboxTemplateBuilder({
   from: '<infobox><title src="title"></title></infobox>',
@@ -70,6 +69,11 @@ infobox.data.add(group);
 Note that the `boundVariableName` is the key that identifies the cell in the infobox.  
 
 ### Saving an infobox
+To save the infobox, simply call:
+```javascript
+infobox.save();
+```
+To save to MediaWiki (which is the default data store), the `InfoboxTemplateBuilder` instance must have a `title` property set.  
 
 ### Serialization
 
