@@ -19,13 +19,13 @@ var infobox = new InfoboxTemplateBuilder({
 
 Upon instantiation, the `infobox` object will have two properties that represent data related to the infobox: `infobox.data`, which is an istance of the `InfoboxData` class, and `infobox.theme`, which is a instance of InfoboxThemeData. 
 
-#### InfoboxData Class
+#### InfoboxData class
 The `InfoboxData` class is where the structure of the infobox template is stored. This is where you can add, remove, and swap rows in the the infobox template. 
 
-#### InfoboxThemeData Class
+#### InfoboxThemeData class
 The `InfoboxThemeData` class is where custom styles of the infobox are stored. 
 
-#### Adding rows to an infobox
+#### Adding a row to an infobox template
 `InfoboxData` has a `newElement` function that is available both statically and via an `InfoboxData` instance. Here's an example usage: 
 ```javascript
 // create infobox instance
@@ -45,8 +45,12 @@ var img = infoData.newElement('Image', {
 	})
 });
 infobox.data.add(image);
+```
 
-// create and add a group
+#### Adding a group to an infobox template
+Adding a group is the same as adding an element, but you can also add elements to groups. 
+
+```javascript
 var field1 = infoData.newElement('Field', {
 	boundVariableName: 'first_appearance'
 	label: 'First Apearance',
