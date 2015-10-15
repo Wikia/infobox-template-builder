@@ -1,6 +1,7 @@
 'use strict';
 import {Collection} from './collection';
 import * as Types from '../types/all';
+import {isString} from '../validators';
 
 const defaultProps = {
 	items: [],
@@ -24,6 +25,9 @@ export class InfoboxData extends Collection {
 	}
 
 	static newElement(elemName, props) {
+		if (isString(elemName)) {
+			elemName = `${elemName.charAt(0).toUpperCase()}${elemName.slice(1)}`;
+		}
 		return new Types[elemName](props);
 	}
 
