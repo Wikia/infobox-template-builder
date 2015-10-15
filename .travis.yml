@@ -1,3 +1,11 @@
 language: node_js
 node_js:
   - 0.12.1
+install:
+  - npm install
+  - node ./node_modules/jspm/jspm.js registry export github
+  - node ./node_modules/jspm/jspm.js config registries.github.remote https://github.jspm.io
+  - node ./node_modules/jspm/jspm.js config registries.github.auth $JSPM_GITHUB_TOKEN
+  - node ./node_modules/jspm/jspm.js config registries.github.maxRepoSize 100
+  - node ./node_modules/jspm/jspm.js config registries.github.handler jspm-github
+  - node ./node_modules/jspm/jspm.js install -y
