@@ -92,6 +92,7 @@ Serialization methods live in the [/src/serializers](https://github.com/Wikia/in
 `deserilize` takes one argument: a string representation of the data. It returns an object containing a new `InfoboxData` instance and a new `InfoboxThemeData` instance. 
 
 ### Events
+This app uses an [EventEmitter](https://github.com/Olical/EventEmitter) library, which can be used for communication between user actions and the core API. For more information on the EventEmitter API, see [the docs](https://github.com/Olical/EventEmitter/blob/master/docs/api.md). 
 
 ## Development
 ### Getting Started
