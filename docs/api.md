@@ -1,6 +1,7 @@
 # Public API
 
 #### Create a new infbox template builder instance
+All parameters  for `InfoboxTemplateBuilder` are optional, though in order to save to MediaWiki, a title value is required inside the `persistOptions` object. 
 ```javascript
 var infobox = new InfoboxTemplateBuilder({
   persistOptions: {
@@ -28,7 +29,7 @@ The `InfoboxData` class is where the structure of the infobox template is stored
 The `InfoboxThemeData` class is where custom styles of the infobox are stored. 
 
 #### Adding a row to an infobox template
-`InfoboxData` has a `newElement` function that is available both statically and via an `InfoboxData` instance. Here's an example usage: 
+`InfoboxData` has a `newElement` function that is available both statically and non-statically, via an `InfoboxData` instance. Here's an example usage: 
 ```javascript
 // create infobox instance
 var infobox = new InfoboxTemplateBuilder();
@@ -53,26 +54,32 @@ infobox.data.add(image);
 Adding a group is the same as adding an element, but you can also add elements to groups. 
 
 ```javascript
+// create new field element
 var field1 = infoData.newElement('Field', {
 	boundVariableName: 'first_appearance'
 	label: 'First Apearance',
 	defaultValue: 'Season 1, Episode 1',
 });
 
+// create a new group with that element
 var group = infoData.newElement('Group', {
 	items: [field1]
 });
 
+// create another field element
 var field2 = infoData.newElement('Field', {
 	boundVariableName: 'last_appearance'
 	label: 'Last Apearance',
 	defaultValue: 'N/A',
 });
 
+// add the second element to the group
 group.add(field2);
+
+// add the group to the infobox data instance
 infobox.data.add(group);
 ```
-Note that the `boundVariableName` is the key that identifies the cell in the infobox.  
+Note that the `boundVariableName` is the key that identifies a cell in an infobox.  
 
-### Events
+#### Events
 This app uses an [EventEmitter](https://github.com/Olical/EventEmitter) library, which can be used for communication between user actions and the core API. For more information on the EventEmitter API, see [the docs](https://github.com/Olical/EventEmitter/blob/master/docs/api.md). 
