@@ -9,14 +9,14 @@ First, install your node dependencies by running:
 
 `$ npm install && sudo npm install -g jspm`
 
-The source is written using ES6 transpiled by bower. You can test in the browser by running:
+You can test in the browser by running:
 
 `$ npm run dev`
 
 The page will be available via `localhost:8000`.
 
 ### ES6
-This project uses [Babel](https://babeljs.io/) for [EcmaScript 6](https://babeljs.io/docs/learn-es2015/) transpilation. [JSPM](http://jspm.io/) works as a module loader as well as a method for making ES6 syntax available in the browser.  
+This project uses [Babel](https://babeljs.io/) for [EcmaScript 6](https://babeljs.io/docs/learn-es2015/) transpilation. [JSPM](http://jspm.io/) works as a module loader as well as a method for making ES6 syntax available in the browser.
 
 ### Testing
-To run unit tests, run `$ npm test`. Tests are also run after every commit with TravisCI.
+To run unit tests, run `$ npm test`. Tests are also run after every commit with [TravisCI](https://travis-ci.org/profile/Wikia).
