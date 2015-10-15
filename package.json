@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "jspm install && python -m SimpleHTTPServer",
-    "test": "karma start karma.conf.js"
+    "test": "node ./node_modules/karma/bin/karma start karma.conf.js"
   },
   "repository": {
     "type": "git",
