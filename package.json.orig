@@ -1,0 +1,53 @@
+{
+  "name": "infobox-template-builder",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "jspm install && python -m SimpleHTTPServer",
+<<<<<<< HEAD
+    "test": "node ./node_modules/karma/bin/karma start karma.conf.js"
+=======
+    "test": "echo \"Tests aren't set up yet, so exit\" && exit 0"
+>>>>>>> dev
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Wikia/infobox-template-builder"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Wikia/infobox-template-builder/issues"
+  },
+  "homepage": "https://github.com/Wikia/infobox-template-builder",
+  "devDependencies": {
+    "isparta": "^3.0.3",
+    "istanbul": "^0.3.22",
+    "jspm": "^0.16.12",
+    "karma": "^0.12.37",
+    "karma-babel-preprocessor": "^5.2.2",
+    "karma-coverage": "^0.5.2",
+    "karma-jspm": "^2.0.1",
+    "karma-phantomjs-launcher": "^0.2.1",
+    "karma-qunit": "^0.1.5",
+    "karma-sourcemap-loader": "^0.3.5",
+    "phantomjs": "^1.9.17",
+    "qunitjs": "^1.19.0"
+  },
+  "jspm": {
+    "configFile": "jspm.config.js",
+    "dependencies": {
+      "event-emitter": "npm:wolfy87-eventemitter@^4.3.0",
+      "handlebars": "github:components/handlebars.js@^4.0.3"
+    },
+    "devDependencies": {
+      "babel": "npm:babel-core@^5.8.24",
+      "babel-runtime": "npm:babel-runtime@^5.8.24",
+      "core-js": "npm:core-js@^1.1.4"
+    }
+  },
+  "dependencies": {
+    "handlebars": "^4.0.3"
+  }
+}
