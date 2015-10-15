@@ -10,12 +10,13 @@ function initialize() {
 	let demo, infobox;
 
 	try {
-
 		demo = document.getElementById('demo');
 
 		infobox = new InfoboxTemplateBuilder({
 			from: demo.value,
-			title: 'Template:foobox'
+			persistOptions: {
+				title: 'Template:foobox'
+			}
 		});
 
 		infobox.save();
@@ -24,7 +25,7 @@ function initialize() {
 
 	} catch (e) {
 
-		const err = new Error('not a valid infobox');
+		const err = new Error(e.message || 'Not a valid infobox');
 
 		window.alert(err);
 

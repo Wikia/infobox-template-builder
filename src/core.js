@@ -14,7 +14,7 @@ const defaultProps = {
 	// The 'from' property's value is a string whose contents are serialized Portable Infobox XML
 	from: null,
 	// In the case of mediawiki storage, this is the article title. Otherwise, a string title for the infobox template.
-	title: null
+	persistOptions: null
 };
 
 class Core extends Model {
@@ -26,11 +26,7 @@ class Core extends Model {
 		// extend the properties
 		params = Object.assign(defaultProps, params);
 
-		const {from, title} = params;
-
-		if (title) {
-			this.title = title;
-		}
+		const {from} = params;
 
 		/*
 		 * If builder is instantiated with a serialized document, we will deconstruct it
@@ -48,6 +44,9 @@ class Core extends Model {
 			this.data = new InfoboxData(params.dataOptions);
 			this.theme = new InfoboxThemeData();
 		}
+
+		// store config for persistence method
+		this.persistOptions = params.persistOptions;
 	}
 
 	serialize() {
@@ -57,7 +56,7 @@ class Core extends Model {
 	save() {
 
 		const data = this.serialize(this.data, this.theme);
-		return persist(this.title, data)
+		return persist(data, this.persistOptions)
 			.then(() => this.emit('save', data))
 			.catch((err) => this.emit('errorWhileSaving', err));
 
