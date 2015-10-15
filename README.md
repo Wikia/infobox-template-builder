@@ -1,7 +1,7 @@
 # Infobox Template Builder
 
 ## API Docs
-Please see the [docs directory](https://github.com/Wikia/infobox-template-builder/tree/dev/docs) for information on how to use this library. 
+Please see the [docs directory](docs) for information on how to use this library. 
 
 ## Development
 ### Getting Started
@@ -19,4 +19,4 @@ The page will be available via `localhost:8000`.
 This project uses [Babel](https://babeljs.io/) for [EcmaScript 6](https://babeljs.io/docs/learn-es2015/) transpilation. [JSPM](http://jspm.io/) works as a module loader as well as a method for making ES6 syntax available in the browser.  
 
 ### Testing
-To run unit tests, run `$ npm test`. Tests are also run after every commit with TravisCI
+To run unit tests, run `$ npm test`. Tests are also run after every commit with TravisCI.

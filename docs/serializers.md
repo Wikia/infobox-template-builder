@@ -1,6 +1,6 @@
 ### Serialization
 
-Serialization methods live in the [/src/serializers](https://github.com/Wikia/infobox-template-builder/tree/dev/src/serializers/) directory. Each serializer in that directory should contain a `serialize` and `desrialize` method. 
+Serialization methods live in the [/src/serializers](src/serializers/) directory. Each serializer in that directory should contain a `serialize` and `desrialize` method. 
 
 `serialize` takes two arguments: an instance of `InfoboxData` and an instance of `InfoboxThemeData`, and returns a serialized string that can be stored in a database. 
 
