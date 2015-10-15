@@ -20,16 +20,12 @@ const image = `<image{{#boundVariableName}} source="{{.}}"{{/boundVariableName}}
 </image>`;
 
 const title = `<title{{#boundVariableName}} source="{{.}}"{{/boundVariableName}}>
-	{{#label}}<label>{{.}}</label>{{/label}}
 	{{#defaultValue}}<default>{{.}}</default>{{/defaultValue}}
 	{{#stringTemplate}}<format>{{.}}</format>{{/stringTemplate}}
 </title>`;
 
 // headers within groups use the "title" node type
-const header = `<header{{#boundVariableName}} source="{{.}}"{{/boundVariableName}}>
-	{{#label}}<label>{{.}}</label>{{/label}}
-	{{#defaultValue}}<default>{{.}}</default>{{/defaultValue}}
-</header>`;
+const header = `<header>{{value}}</header>`;
 
 export const xmlString = `<infobox{{#theme}} theme="{{.}}"{{/theme}}{{#themeVarName}} theme-source="{{.}}"{{/themeVarName}}{{#layout}} layout="{{.}}"{{/layout}}>
 	{{#each items as |item|}}
