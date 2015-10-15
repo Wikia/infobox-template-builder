@@ -5,7 +5,9 @@
 #### Create a new infbox template builder instance
 ```javascript
 var infobox = new InfoboxTemplateBuilder({
-  title: 'Template:FooBox' // optional, can be added later
+  persistOptions: {
+    title: 'Template:FooBox'
+  }
 });
 ```
 
@@ -13,7 +15,9 @@ var infobox = new InfoboxTemplateBuilder({
 ```javascript
 var infobox = new InfoboxTemplateBuilder({
   from: '<infobox><title src="title"></title></infobox>',
-  title: 'Template:FooBox'
+  persistOptions: {
+    title: 'Template:FooBox'
+  }
 });
 ```
 
@@ -77,9 +81,15 @@ To save the infobox, simply call:
 ```javascript
 infobox.save();
 ```
-To save to MediaWiki (which is the default data store), the `InfoboxTemplateBuilder` instance must have a `title` property set.  
+To save to MediaWiki (which is the default data store), the `InfoboxTemplateBuilder` instance must contain a `persistOptions` property with a `title` value set.  
 
 ### Serialization
+
+Serialization methods live in the [/src/serializers](https://github.com/Wikia/infobox-template-builder/tree/dev/src/serializers/) directory. Each serializer in that directory should contain a `serialize` and `desrialize` method. 
+
+`serialize` takes two arguments: an instance of `InfoboxData` and an instance of `InfoboxThemeData`, and returns a serialized string that can be stored in a database. 
+
+`deserilize` takes one argument: a string representation of the data. It returns an object containing a new `InfoboxData` instance and a new `InfoboxThemeData` instance. 
 
 ### Events
 
