@@ -2,4 +2,5 @@ language: node_js
 node_js:
   - 0.12.1
 install:
+  - npm install
   - node ./node_modules/jspm/jspm.js install -y
