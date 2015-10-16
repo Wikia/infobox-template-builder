@@ -8,7 +8,8 @@ module.exports = function (config) {
 		frameworks: ['jspm', 'qunit'],
 
 		files: [
-			'node_modules/karma-babel-preprocessor/node_modules/babel-core/browser-polyfill.js'
+			'node_modules/karma-babel-preprocessor/node_modules/babel-core/browser-polyfill.js',
+			'src/test-helpers.js'
 		],
 
 		jspm: {

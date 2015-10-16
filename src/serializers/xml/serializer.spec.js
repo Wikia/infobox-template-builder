@@ -45,22 +45,37 @@ QUnit.test('Serialize to XML', function(assert) {
 		items: [title, image, group]
 	});
 
-	let output = `<infobox>
-		<title source="foo"><default>foo</default><format>foo</format></title>
-		<image source="foo">
-			<caption source="foo"><default>foo</default><format>foo</format></caption>
-			<alt source="foo"><default>foo</default></alt>
-			<default>foo</default>
-		</image>
-		<group>
-			<header>foo</header>
-			<data source="foo"><label>foo</label><default>foo</default><format>foo</format></data>
-		</group>
-	</infobox>`;
+	let xml = `<infobox>
+			<title source="foo"><default>foo</default><format>foo</format></title>
+			<image source="foo">
+				<caption source="foo"><default>foo</default><format>foo</format></caption>
+				<alt source="foo"><default>foo</default></alt>
+				<default>foo</default>
+			</image>
+			<group>
+				<header>foo</header>
+				<data source="foo"><label>foo</label><default>foo</default><format>foo</format></data>
+			</group>
+		</infobox>`;
 
-	assert.strictEqual(serialize(infoboxData), formatXml(output), 'serialized output should match expected');
+	assert.strictEqual(serialize(infoboxData), formatXml(xml), 'serialized xml should match expected xml');
 });
 
-//QUnit.test('Deserialize XML', function(assert) {
-//
-//});
+QUnit.test('Deserialize XML', function (assert) {
+	let title = InfoboxData.newElement('Title', {
+		boundVariableName: 'foo'
+	});
+	let infoxData = new InfoboxData({
+		items: [title]
+	});
+
+	let serialized = serialize(infoxData); // xml string
+	let deserialized = deserialize(serialized).data; // InfoboxData instance
+
+	let titleElem = deserialized.items[0];
+	assert.strictEqual(titleElem._nodeType, 'title', 'node type should be set on title element');
+	assert.strictEqual(titleElem.boundVariableName, 'foo', 'bound variable should be set on title element');
+
+	let reserialized = serialize(deserialized); // back to xml string
+	assert.strictEqual(reserialized, serialized, 'deserialize then serialize should maintain the same XML');
+});
