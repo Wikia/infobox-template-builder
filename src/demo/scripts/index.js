@@ -22,6 +22,7 @@ function initialize() {
 		window.alert('New infobox created');
 
 	} catch (e) {
+		console.log(e.stack);
 
 		const err = new Error('not a valid infobox');
 

@@ -1,4 +1,4 @@
-import {isNumeric} from './validators';
+import {isNumeric, isObject} from './validators';
 
 'use strict';
 export function deepSet(str, val, context = this) {
@@ -29,7 +29,7 @@ export function deepSet(str, val, context = this) {
 			context = context[parts[i]];
 
 		} else {
-			
+
 			// if namespace doesn't exist, instantiate it as empty object
 			context = context[parts[i]] = context[parts[i]] || {};
 		}

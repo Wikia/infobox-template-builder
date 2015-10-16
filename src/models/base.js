@@ -4,27 +4,24 @@ import {deepSet} from '../utils';
 
 /**
  * @class Model
- * @description A simple implemenation of a model class that notifies provides a getter and setter that notifies on property changes
+ * @description A simple implemenation of a model class that notifies provides a getter and setter that
+ * notifies on property changes
  */
 export class Model {
-	constructor() {
+	constructor(properties = {}) {
 		const emitter = new EventEmitter();
 
-		let emitterProxy = {};
-
 		this.validators = {};
+
+		let emitterProxy = {};
 
 		Object.keys(EventEmitter.prototype).forEach((methodName) => {
 			emitterProxy[methodName] = EventEmitter.prototype[methodName].bind(emitter);
 		});
 
 		Object.assign(Object.getPrototypeOf(this), emitterProxy);
-	}
 
-	extendValidation(validators) {
-		Object.keys(validators).forEach(key => {
-			this.validators[key] = validators[key];
-		});
+		this.setProperties(properties);
 	}
 
 	set(propName, newValue) {

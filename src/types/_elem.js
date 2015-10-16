@@ -2,24 +2,24 @@
 import {Model} from '../models/base';
 import {isString} from '../validators';
 
-const defaultProperties = {
-	_nodeType: 'elem',
-	boundVariableName: null,
-	defaultValue: null,
-	value: null
-};
-
 export class Elem extends Model {
 
 	constructor(properties = {}) {
 
-		super();
+		const defaultProperties = {
+			_nodeType: 'elem',
+			boundVariableName: null,
+			defaultValue: null,
+			value: null
+		};
 
-		this.extendValidation({
+		// Merge validators from the inheritance chain
+		const mergedValidators = Object.assign({
 			boundVariableName: isString,
 			defaultValue: isString
-		});
+		}, properties.validators);
 
-		this.setProperties(Object.assign({}, defaultProperties, properties));
+		// Here we clobber the validators with the mergedValidators
+		super(Object.assign(defaultProperties, properties, {validators: mergedValidators}));
 	}
 }
