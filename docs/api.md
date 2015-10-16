@@ -80,6 +80,3 @@ group.add(field2);
 infobox.data.add(group);
 ```
 Note that the `boundVariableName` is the key that identifies a cell in an infobox.  
-
-#### Events
-This app uses an [EventEmitter](https://github.com/Olical/EventEmitter) library, which can be used for communication between user actions and the core API. For more information on the EventEmitter API, see [the docs](https://github.com/Olical/EventEmitter/blob/master/docs/api.md). 
