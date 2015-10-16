@@ -11,7 +11,7 @@ import {serialize, deserialize} from 'path/to/serializer';
 import {formatXml} from 'path/to/helpers';
 
 let xml = `<infobox>...</infobox>`;
-let obj = deserializ(xml);
+let obj = deserialize(xml);
 let data = obj.data; // InfoboxData instance or null
 let theme = obj.theme; // InfoboxThemeData instance or null
 let backToXml = serialize(data, theme);
