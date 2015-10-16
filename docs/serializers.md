@@ -13,10 +13,11 @@ import {formatXml} from 'path/to/helpers';
 
 let xml = `<infobox>...</infobox>`;
 let obj = deserialize(xml);
+
 let data = obj.data; // InfoboxData instance or null
 let theme = obj.theme; // InfoboxThemeData instance or null
 let backToXml = serialize(data, theme);
 
 formatXml(xml) === backToXml; // true 
 ```
-Note that there are no public APIs for serializers, they are called by `InfoboxTemplateBuilder` when initializing and saving infoboxe templates. 
+Note that there are no public APIs for serializers, they are called by `InfoboxTemplateBuilder` when initializing and saving infobox templates. 
