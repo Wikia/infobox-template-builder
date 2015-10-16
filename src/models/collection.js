@@ -31,7 +31,7 @@ export class Collection extends Model {
 			throw new TypeError('index must be an integer');
 		}
 
-		if (index) {
+		if (index >= 0) {
 			removed = itemsCopy.splice(index, 1);
 		} else {
 			removed = itemsCopy.pop();
