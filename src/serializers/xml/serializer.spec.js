@@ -63,12 +63,13 @@ QUnit.test('Serialize to XML', function(assert) {
 
 QUnit.test('Deserialize XML', function (assert) {
 	let xml = `<infobox><title source="foo"></title></infobox>`;
-
-	let deserialized = deserialize(xml).data; // returns InfoboxData instance
+	let deserialized = deserialize(xml).data;
 	let titleElem = deserialized.items[0];
+
 	assert.strictEqual(titleElem._nodeType, 'title', 'node type should be set on title element');
 	assert.strictEqual(titleElem.boundVariableName, 'foo', 'bound variable should be set on title element');
 
-	let reserialized = serialize(deserialized); // back to xml string
+	// for fun let's reserialize and compare to original
+	let reserialized = serialize(deserialized);
 	assert.strictEqual(reserialized, formatXml(xml), 'deserialize then serialize should maintain the same XML');
 });
