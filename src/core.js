@@ -50,7 +50,7 @@ class Core extends Model {
 
 	save() {
 
-		const data = this.serialize(this.data, this.theme);
+		const data = this.serialize();
 		return persist(data)
 			.then(() => this.emit('save', data))
 			.catch((err) => this.emit('errorWhileSaving', err));
