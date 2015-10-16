@@ -8,6 +8,7 @@ Serialization methods live in the [src/serializers](../src/serializers) director
 #### Example
 ```javascript
 import {serialize, deserialize} from 'path/to/serializer';
+import {formatXml} from 'path/to/helpers';
 
 let xml = `<infobox>...</infobox>`;
 let obj = deserializ(xml);
@@ -15,7 +16,6 @@ let data = obj.data; // InfoboxData instance or null
 let theme = obj.theme; // InfoboxThemeData instance or null
 let backToXml = serialize(data, theme);
 
-xml === backToXml; // true as long as whitespace is maintained with something like [formatXml](../src/serializers/helpers.js) 
+formatXml(xml) === backToXml; // true 
 ```
-
 Note that there are no public APIs for serializers, they are called by `InfoboxTemplateBuilder` when initializing and saving infoboxe templates. 
