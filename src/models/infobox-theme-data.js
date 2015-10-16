@@ -2,21 +2,19 @@
 import {Model} from './base';
 import {isString} from '../validators';
 
-const defaultProperties = {
-	borderColor: null,
-	accentColor: null
-};
 
 export class InfoboxThemeData extends Model {
 
 	constructor(properties = {}) {
-		super();
+		const defaultProperties = {
+			borderColor: null,
+			accentColor: null,
+			validators: {
+				borderColor: isString,
+				accentColor: isString
+			}
+		};
 
-		Object.assign(this, defaultProperties, properties);
-
-		this.extendValidation({
-			borderColor: isString,
-			accentColor: isString
-		});
+		super(Object.assign(defaultProperties, properties));
 	}
 }
