@@ -1,6 +1,6 @@
 # Infobox Template Builder
 
-At its core, this project is a library for manipulating data structures. It's built for creating templates with which Wikia users can build infoboxes. There's 4 main sections to this application: 
+This project provides a simple programmatic API for working working with infoboxes. It's built for creating schemas with which Wikia users can build infoboxes. There's 4 main sections to this application: 
 
 * The template builder core library, including classes for individual node types
 * Serializers for converting data to and from strings
