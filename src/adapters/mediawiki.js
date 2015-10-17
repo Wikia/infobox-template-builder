@@ -34,6 +34,7 @@ export function persist(xmlString, options) {
  */
 function save(xmlString, title, editToken) {
 	return new Promise(function (resolve, reject) {
+		// FIXME: this is hard coded to point to a devbox, but is designed to be run at the same domain as `/api.php`
 		xhrPost('http://lizlux.liz.wikia-dev.com/api.php', {
 			data: {
 				action: 'edit',
@@ -65,6 +66,7 @@ function save(xmlString, title, editToken) {
  */
 function getEditToken(title) {
 	return new Promise(function (resolve, reject) {
+		// FIXME: this is hard coded to point to a devbox, but is designed to be run at the same domain as `/api.php`
 		xhrPost('http://lizlux.liz.wikia-dev.com/api.php', {
 			data: {
 				action: 'query',
