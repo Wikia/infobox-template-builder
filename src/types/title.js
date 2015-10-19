@@ -9,8 +9,11 @@ export class Title extends Elem {
 		const defaultProperties = {
 			_nodeType: 'title',
 			stringTemplate: null,
+			// title may have a value if it's actually a header inside a group
+			value: null,
 			validators: {
-				stringTemplate: isString
+				stringTemplate: isString,
+				value: isString
 			}
 		};
 

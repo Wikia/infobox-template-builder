@@ -9,8 +9,7 @@ export class Elem extends Model {
 		const defaultProperties = {
 			_nodeType: 'elem',
 			boundVariableName: null,
-			defaultValue: null,
-			value: null
+			defaultValue: null
 		};
 
 		// Merge validators from the inheritance chain
