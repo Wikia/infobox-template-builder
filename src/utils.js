@@ -2,35 +2,36 @@ import {isNumeric, isString} from './validators';
 
 'use strict';
 export function deepSet(str, val, context = this) {
-	var parts,
-		i;
+	var parts;
 
 	if (typeof str !== 'string') {
-
 		throw Error('value provided to the first argument of deepSet must be a string');
-
 	} else {
-
 		parts = str.split('.');
 	}
 
-	for (i = 0; i < parts.length; i++) {
-		// if a obj is passed in and loop is assigning last variable in namespace
+	for (let i = 0; i < parts.length; i++) {
+		let property = parts[i];
+
+		// assign last variable in namespace
 		if (i === parts.length - 1) {
 
-			Object.defineProperty(context, parts[i], {
+			Object.defineProperty(context, property, {
 				configurable: true,
 				enumerable: true,
 				writable: true,
 				value: val
 			});
 
-			context = context[parts[i]];
+			context = context[property];
 
 		} else {
-
-			// if namespace doesn't exist, instantiate it as empty object
-			context = context[parts[i]] = context[parts[i]] || {};
+			// ensure specified property is an object so it can be assigned a value in the next loop
+			if (typeof context[property] !== 'object') {
+				context[property] = {};
+			}
+			// switch context to current item for next loop
+			context = context[property];
 		}
 	}
 
