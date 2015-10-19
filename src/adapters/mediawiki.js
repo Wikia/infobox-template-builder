@@ -26,13 +26,13 @@ export function persist(xmlString, options) {
 /**
  * Send request to MW API to save infobox article with new data
  * @param xmlString {string} New value for the infobox xml
- * @param options {object} Persist options including title and optional domain for saving
+ * @param options {object} Persist options including title and optional host for saving
  * @param editToken {string} Needed for authenticating request
  * @return {Promise}
  */
 function save(xmlString, options, editToken) {
 	return new Promise(function (resolve, reject) {
-		xhrPost((options.domain || '') + '/api.php', {
+		xhrPost((options.host || '') + '/api.php', {
 			data: {
 				action: 'edit',
 				title: options.title,
@@ -58,12 +58,12 @@ function save(xmlString, options, editToken) {
 
 /**
  * Get an edit token so we can save an article via MW API
- * @param options {object} Persist options including title and optional domain for getting edit token
+ * @param options {object} Persist options including title and optional host for getting edit token
  * @return {Promise}
  */
 function getEditToken(options) {
 	return new Promise(function (resolve, reject) {
-		xhrPost((options.domain || '') + '/api.php', {
+		xhrPost((options.host || '') + '/api.php', {
 			data: {
 				action: 'query',
 				prop: 'info',
