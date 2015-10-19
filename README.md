@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/Wikia/infobox-template-builder.svg?branch=dev)](https://travis-ci.org/Wikia/infobox-template-builder)
 # Infobox Template Builder
 
 This project provides a simple programmatic API for working with infoboxes. It's built for creating schemas with which Wikia users can build infoboxes.
