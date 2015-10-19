@@ -5,9 +5,9 @@ import {formatXml} from './helpers';
 QUnit.module('Serialization helpers');
 
 QUnit.test('formatXml', (assert) => {
-	let input = `<infobox><data source='foo'><default>value</default></data></infobox>`;
+	let inline = `<infobox><data source='foo'><default>value</default></data></infobox>`;
 
-	let output = `<infobox>
+	let messy = `<infobox>
 
 		<data source='foo'><default>value</default>
 		</data>
@@ -15,5 +15,5 @@ QUnit.test('formatXml', (assert) => {
 
 	</infobox>`;
 
-	assert.strictEqual(formatXml(input), formatXml(output), 'xml should be formatted nicely')
+	assert.strictEqual(formatXml(inline), formatXml(messy), 'formatXml should return the same output')
 });
