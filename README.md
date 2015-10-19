@@ -12,6 +12,12 @@ The application is meant to be run entirely in a browser, and has no server-side
 ## API Docs
 Please see the [docs directory](docs) for information on how to use this library. 
 
+## Using this library in production
+To use this library in production, please use one of the common distribution [formats provided here](https://github.com/Wikia/infobox-template-builder/tree/dev/dist). The library depends on several libraries which have been omitted from our distributions in the case that you are already using these libaries. If not, you will need to include these dependencies yourself, before invoking this library.
+#### Production dependencies:
+* EventEmitter@^4.3.0 [source](https://github.com/Olical/EventEmitter) 
+* Handlebars@^4.0.3 [source](https://github.com/wycats/handlebars.js/)
+
 ## Development
 ### Getting Started
 First, install your node dependencies by running:
