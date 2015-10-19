@@ -26,13 +26,13 @@ QUnit.test('deep set', function (assert) {
 QUnit.test('copy array', function (assert) {
 	let arr = [1,2];
 	let copy = copyArray(arr);
-	assert.deepEqual(arr, copy);
+	assert.deepEqual(arr, copy, 'array values should be copied to new array');
 });
 
 QUnit.test('swap array elements', function (assert) {
 	let arr = [1,2,3];
 	swapArrayElements(arr, 0, 1);
-	assert.deepEqual(arr, [2,1,3]);
+	assert.deepEqual(arr, [2,1,3], 'array elements should have changed places');
 });
 
 QUnit.test('serialize request data', function (assert) {
