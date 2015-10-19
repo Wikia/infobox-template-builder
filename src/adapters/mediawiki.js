@@ -11,34 +11,31 @@ import {xhrPost} from '../utils';
  * @return {Promise}
  */
 export function persist(xmlString, options) {
-	const {title} = options;
-
 	if (
 		!xmlString ||
 		!isString(xmlString) ||
-		!isString(title)
+		!isString(options.title)
 	) {
 		throw new TypeError('Infobox title and xml are required for saving to MediaWiki');
 	}
 
-	return getEditToken(title)
-			.then(save.bind(null, xmlString, title));
+	return getEditToken(options)
+			.then(save.bind(null, xmlString, options));
 }
 
 /**
  * Send request to MW API to save infobox article with new data
  * @param xmlString {string} New value for the infobox xml
- * @param title {string} Name of the article where the infobox xml will be saved
+ * @param options {object} Persist options including title and optional domain for saving
  * @param editToken {string} Needed for authenticating request
  * @return {Promise}
  */
-function save(xmlString, title, editToken) {
+function save(xmlString, options, editToken) {
 	return new Promise(function (resolve, reject) {
-		// FIXME: this is hard coded to point to a devbox, but is designed to be run at the same domain as `/api.php`
-		xhrPost('http://lizlux.liz.wikia-dev.com/api.php', {
+		xhrPost((options.domain || '') + '/api.php', {
 			data: {
 				action: 'edit',
-				title: title,
+				title: options.title,
 				text: xmlString,
 				token: editToken,
 				format: 'json'
@@ -61,17 +58,16 @@ function save(xmlString, title, editToken) {
 
 /**
  * Get an edit token so we can save an article via MW API
- * @param title {string} Name of the article where the infobox xml will be saved
+ * @param options {object} Persist options including title and optional domain for getting edit token
  * @return {Promise}
  */
-function getEditToken(title) {
+function getEditToken(options) {
 	return new Promise(function (resolve, reject) {
-		// FIXME: this is hard coded to point to a devbox, but is designed to be run at the same domain as `/api.php`
-		xhrPost('http://lizlux.liz.wikia-dev.com/api.php', {
+		xhrPost((options.domain || '') + '/api.php', {
 			data: {
 				action: 'query',
 				prop: 'info',
-				titles: title,
+				titles: options.title,
 				intoken: 'edit',
 				format: 'json'
 			},
