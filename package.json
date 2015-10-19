@@ -25,6 +25,7 @@
   },
   "homepage": "https://github.com/Wikia/infobox-template-builder",
   "devDependencies": {
+    "handlebars": "^4.0.3",
     "isparta": "^3.0.3",
     "istanbul": "^0.3.22",
     "jspm": "^0.16.12",
