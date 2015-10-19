@@ -6,12 +6,12 @@
   "scripts": {
     "dev": "jspm install && python -m SimpleHTTPServer",
     "test": "node ./node_modules/karma/bin/karma start karma.conf.js",
-    "dist-amd": "node ./node_modules/jspm/jspm.js bundle-sfx ./src/core.js ./dist/infobox-template-builder.amd.js --format amd",
-    "dist-amd-min": "node ./node_modules/jspm/jspm.js bundle-sfx ./src/core.js ./dist/infobox-template-builder.amd.min.js --format amd --minify",
-    "dist-cjs": "node ./node_modules/jspm/jspm.js bundle-sfx ./src/core.js ./dist/infobox-template-builder.cjs.js --format cjs",
-    "dist-cjs-min": "node ./node_modules/jspm/jspm.js bundle-sfx ./src/core.js ./dist/infobox-template-builder.cjs.min.js --format cjs --minify",
-    "dist-sfx": "node ./node_modules/jspm/jspm.js bundle-sfx ./src/core.js ./dist/infobox-template-builder.js",
-    "dist-sfx-min": "node ./node_modules/jspm/jspm.js bundle-sfx ./src/core.js ./dist/infobox-template-builder.min.js --minify",
+    "dist-amd": "node ./node_modules/jspm/jspm.js bundle-sfx ./src/core.js - handlebars - event-emitter ./dist/infobox-template-builder.amd.js --format amd",
+    "dist-amd-min": "node ./node_modules/jspm/jspm.js bundle-sfx ./src/core.js - handlebars - event-emitter ./dist/infobox-template-builder.amd.min.js --format amd --minify",
+    "dist-cjs": "node ./node_modules/jspm/jspm.js bundle-sfx ./src/core.js - handlebars - event-emitter ./dist/infobox-template-builder.cjs.js --format cjs",
+    "dist-cjs-min": "node ./node_modules/jspm/jspm.js bundle-sfx ./src/core.js - handlebars - event-emitter ./dist/infobox-template-builder.cjs.min.js --format cjs --minify",
+    "dist-sfx": "node ./node_modules/jspm/jspm.js bundle-sfx ./src/core.js - handlebars - event-emitter ./dist/infobox-template-builder.js --globals \"{'handlebars': 'Handlebars', 'event-emitter': 'EventEmitter'}\" --format global",
+    "dist-sfx-min": "node ./node_modules/jspm/jspm.js bundle-sfx ./src/core.js - handlebars - event-emitter ./dist/infobox-template-builder.min.js --globals \"{'handlebars': 'Handlebars', 'event-emitter': 'EventEmitter'}\" --minify --format global",
     "dist": "npm run dist-amd && npm run dist-amd-min && npm run dist-sfx && npm run dist-sfx-min && npm run dist-cjs && npm run dist-cjs-min"
   },
   "repository": {
@@ -50,7 +50,5 @@
       "core-js": "npm:core-js@^1.1.4"
     }
   },
-  "dependencies": {
-    "handlebars": "^4.0.3"
-  }
+  "dependencies": {}
 }
