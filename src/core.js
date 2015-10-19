@@ -65,7 +65,9 @@ class Core extends Model {
 // semver
 Core.VERSION = '0.1.0';
 
-// export the class for clients that don't use dependency injection
-window.InfoboxTemplateBuilder = Core;
+if (window) {
+	// export the class for clients that don't use dependency injection
+	window.InfoboxTemplateBuilder = Core;
+}
 
 export {Core as InfoboxTemplateBuilder};
