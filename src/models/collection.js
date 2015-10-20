@@ -4,9 +4,9 @@ import {copyArray, swapArrayElements} from '../utils';
 
 export class Collection extends Model {
 	constructor(properties = {}) {
-		super();
-		this.items = [];
-		Object.assign(this, properties);
+		super(Object.assign({
+			items: []
+		}, properties));
 	}
 
 	add(item, index = null) {

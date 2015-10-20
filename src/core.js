@@ -12,7 +12,9 @@ const defaultProps = {
 	// Options to be passed to InfoboxThemeData constructor
 	themeOptions: null,
 	// The 'from' property's value is a string whose contents are serialized Portable Infobox XML
-	from: null
+	from: null,
+	// In the case of mediawiki storage, this is the article title. Otherwise, a string title for the infobox template.
+	persistOptions: null
 };
 
 class Core extends Model {
@@ -42,6 +44,9 @@ class Core extends Model {
 			this.data = new InfoboxData(params.dataOptions);
 			this.theme = new InfoboxThemeData();
 		}
+
+		// store config for persistence method
+		this.persistOptions = params.persistOptions;
 	}
 
 	serialize() {
@@ -49,9 +54,8 @@ class Core extends Model {
 	}
 
 	save() {
-
-		const data = this.serialize(this.data, this.theme);
-		return persist(data)
+		const data = this.serialize();
+		return persist(data, this.persistOptions)
 			.then(() => this.emit('save', data))
 			.catch((err) => this.emit('errorWhileSaving', err));
 
@@ -61,7 +65,9 @@ class Core extends Model {
 // semver
 Core.VERSION = '0.1.0';
 
-// export the class for clients that don't use dependency injection
-window.InfoboxTemplateBuilder = Core;
+if (window) {
+	// export the class for clients that don't use dependency injection
+	window.InfoboxTemplateBuilder = Core;
+}
 
 export {Core as InfoboxTemplateBuilder};

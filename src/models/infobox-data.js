@@ -7,7 +7,6 @@ const defaultProps = {
 	items: [],
 	theme: null,
 	themeVarName: null,
-	title: null,
 	layout: null
 };
 

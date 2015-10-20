@@ -2,20 +2,19 @@
 import {Elem} from './_elem';
 import {isString} from '../validators';
 
-const defaultProperties = {
-	_nodeType: 'caption',
-	stringTemplate: null
-};
 
 export class Caption extends Elem {
 
 	constructor(properties = {}) {
-		super();
 
-		this.extendValidation({
-			stringTemplate: isString
-		});
+		const defaultProperties = {
+			_nodeType: 'caption',
+			stringTemplate: null,
+			validators: {
+				stringTemplate: isString
+			}
+		};
 
-		this.setProperties(Object.assign({}, defaultProperties, properties));
+		super(Object.assign(defaultProperties, properties));
 	}
 }

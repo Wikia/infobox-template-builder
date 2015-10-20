@@ -20,7 +20,7 @@ function createElements(child) {
 		boundVariableName: child.getAttribute('source')
 	};
 
-	switch (nodeName) {
+	switch (nodeName.toLowerCase()) {
 		case 'title':
 			return create('Title', Object.assign(props, {
 				stringTemplate: formatTag && formatTag.textContent
@@ -38,7 +38,6 @@ function createElements(child) {
 			});
 
 			imageProps.caption = create('Caption', {
-				value: captionTag && captionTag.textContent,
 				boundVariableName: captionTag && captionTag.getAttribute('source'),
 				stringTemplate: captionFormatTag && captionFormatTag.textContent
 			});
@@ -93,7 +92,7 @@ export function deserialize(doc) {
 
 	const parser = new DOMParser();
 
-	const _doc = parser.parseFromString(doc, 'text/xml');
+	const _doc = parser.parseFromString(doc, 'text/html');
 
 	const infobox = _doc.querySelector('infobox');
 

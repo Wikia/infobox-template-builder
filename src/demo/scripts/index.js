@@ -10,11 +10,14 @@ function initialize() {
 	let demo, infobox;
 
 	try {
-
 		demo = document.getElementById('demo');
 
 		infobox = new InfoboxTemplateBuilder({
-			from: demo.value
+			from: demo.value,
+			persistOptions: {
+				host: 'http://lizlux.liz.wikia-dev.com',
+				title: 'Template:foobox'
+			}
 		});
 
 		infobox.save();
@@ -22,8 +25,9 @@ function initialize() {
 		window.alert('New infobox created');
 
 	} catch (e) {
+		console.log(e.stack);
 
-		const err = new Error('not a valid infobox');
+		const err = new Error(e.message || 'Not a valid infobox');
 
 		window.alert(err);
 
