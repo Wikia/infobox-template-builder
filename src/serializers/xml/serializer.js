@@ -92,7 +92,7 @@ export function deserialize(doc) {
 
 	const parser = new DOMParser();
 
-	const _doc = parser.parseFromString(doc, 'text/html');
+	const _doc = parser.parseFromString(doc, 'text/xml');
 
 	const infobox = _doc.querySelector('infobox');
 
