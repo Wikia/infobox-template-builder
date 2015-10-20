@@ -26,14 +26,14 @@ module.exports = function (config) {
 			'/jspm_packages/': '/base/jspm_packages/'
 		},
 
-		browsers: ['Chrome', 'Chrome_without_security'],
+		browsers: ['Chrome', 'chromeWithoutSecurity'],
 
 		customLaunchers: {
-			Chrome_travis_ci: {
+			chromeTravisCi: {
 				base: 'Chrome',
 				flags: ['--no-sandbox']
 			},
-			Chrome_without_security: {
+			chromeWithoutSecurity: {
 				base: 'Chrome',
 				flags: ['--disable-web-security']
 			}
@@ -76,7 +76,7 @@ module.exports = function (config) {
 	};
 
 	if (process.env.TRAVIS) {
-		configuration.browsers = ['Chrome_travis_ci'];
+		configuration.browsers = ['chromeTravisCi'];
 	}
 
 	config.set(configuration);
