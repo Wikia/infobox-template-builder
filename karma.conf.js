@@ -1,7 +1,7 @@
 /* global module */
 module.exports = function (config) {
 	'use strict';
-	config.set({
+	var configuration = {
 		autoWatch: false,
 		singleRun: true,
 
@@ -27,7 +27,18 @@ module.exports = function (config) {
 			'/jspm_packages/': '/base/jspm_packages/'
 		},
 
-		browsers: ['PhantomJS'],
+		browsers: ['Chrome', 'Chrome_without_security'],
+
+		customLaunchers: {
+			Chrome_travis_ci: {
+				base: 'Chrome',
+				flags: ['--no-sandbox']
+			},
+			Chrome_without_security: {
+				base: 'Chrome',
+				flags: ['--disable-web-security']
+			}
+		},
 
 		preprocessors: {
 			'src/**/!(*spec).js': ['babel', 'sourcemap', 'coverage']
@@ -63,7 +74,13 @@ module.exports = function (config) {
 				}
 			]
 		}
-	});
+	};
+
+	if (process.env.TRAVIS) {
+		configuration.browsers = ['Chrome_travis_ci'];
+	}
+
+	config.set(configuration);
 
 	function normalizationBrowserName(browser) {
 		return browser.toLowerCase().split(/[ /-]/)[0];

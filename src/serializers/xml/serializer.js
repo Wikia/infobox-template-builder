@@ -20,7 +20,7 @@ function createElements(child) {
 		boundVariableName: child.getAttribute('source')
 	};
 
-	switch (nodeName.toLowerCase()) {
+	switch (nodeName) {
 		case 'title':
 			return create('Title', Object.assign(props, {
 				stringTemplate: formatTag && formatTag.textContent
@@ -92,7 +92,7 @@ export function deserialize(doc) {
 
 	const parser = new DOMParser();
 
-	const _doc = parser.parseFromString(doc, 'text/html');
+	const _doc = parser.parseFromString(doc, 'text/xml');
 
 	const infobox = _doc.querySelector('infobox');
 
