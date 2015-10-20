@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "jspm install && python -m SimpleHTTPServer",
-    "test": "node ./node_modules/karma/bin/karma start karma.conf.js",
+    "test": "./node_modules/karma/bin/karma start karma.conf.js",
     "dist-amd": "node ./node_modules/jspm/jspm.js bundle-sfx ./src/core.js - handlebars - event-emitter ./dist/infobox-template-builder.amd.js --format amd",
     "dist-amd-min": "node ./node_modules/jspm/jspm.js bundle-sfx ./src/core.js - handlebars - event-emitter ./dist/infobox-template-builder.amd.min.js --format amd --minify",
     "dist-cjs": "node ./node_modules/jspm/jspm.js bundle-sfx ./src/core.js - handlebars - event-emitter ./dist/infobox-template-builder.cjs.js --format cjs",
