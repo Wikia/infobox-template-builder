@@ -13,10 +13,9 @@ QUnit.test('Model constructor', function(assert) {
 });
 
 QUnit.test('Model extendValidation, set, and get', function(assert) {
-     var model = new Model();
-	 var validators = {'testKey': isString};
+	 var properties = {'validators': {'testKey': isString}};
 
-	 model.extendValidation(validators);
+	 var model = new Model(properties);
 
 	 try {
 	 	model.set('testKey', 4);

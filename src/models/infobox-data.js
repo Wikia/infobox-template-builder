@@ -24,6 +24,7 @@ export class InfoboxData extends Collection {
 	}
 
 	static newElement(elemName, props) {
+		// element name needs to be capitalized
 		if (isString(elemName)) {
 			elemName = `${elemName.charAt(0).toUpperCase()}${elemName.slice(1)}`;
 		}

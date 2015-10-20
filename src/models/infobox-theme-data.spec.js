@@ -6,7 +6,10 @@ import {InfoboxThemeData} from './infobox-theme-data';
 QUnit.module('Model');
 
 QUnit.test('InfoboxThemeData constructor', function(assert) {
-     var itd = new InfoboxThemeData({borderColor: 4});
+	//colors must be strings
+	var foo = new InfoboxThemeData({borderColor: 4});
+	//assert.throws( () => { return new InfoboxThemeData({borderColor: 4}) }, TypeError);
 
-	 assert.ok(true);
+	var themeData = new InfoboxThemeData({borderColor: 'a string'});
+	assert.strictEqual(themeData.get('borderColor'), 'a string');
 });
