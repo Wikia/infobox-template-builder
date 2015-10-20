@@ -38,7 +38,6 @@ function createElements(child) {
 			});
 
 			imageProps.caption = create('Caption', {
-				value: captionTag && captionTag.textContent,
 				boundVariableName: captionTag && captionTag.getAttribute('source'),
 				stringTemplate: captionFormatTag && captionFormatTag.textContent
 			});
