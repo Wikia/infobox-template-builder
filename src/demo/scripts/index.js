@@ -15,6 +15,7 @@ function initialize() {
 		infobox = new InfoboxTemplateBuilder({
 			from: demo.value,
 			persistOptions: {
+				host: 'http://lizlux.liz.wikia-dev.com',
 				title: 'Template:foobox'
 			}
 		});
