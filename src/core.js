@@ -3,30 +3,38 @@
 import {InfoboxThemeData} from './models/infobox-theme-data';
 import {InfoboxData} from './models/infobox-data';
 import {Model} from './models/base';
-import {persist} from './adapters/mediawiki';
-import {serialize, deserialize} from './serializers/xml/serializer';
-
-const defaultProps = {
-	// Options to be passed to InfoboxData constructor
-	dataOptions: null,
-	// Options to be passed to InfoboxThemeData constructor
-	themeOptions: null,
-	// The 'from' property's value is a string whose contents are serialized Portable Infobox XML
-	from: null,
-	// In the case of mediawiki storage, this is the article title. Otherwise, a string title for the infobox template.
-	persistOptions: null
-};
+import {areValidRoutines} from './validators';
 
 class Core extends Model {
 
 	constructor(params = {}) {
 
-		super();
+		const defaultProps = {
+			// Options to be passed to InfoboxData constructor
+			dataOptions: null,
+			// Options to be passed to InfoboxThemeData constructor
+			themeOptions: null,
+			// The 'from' property's value is a string whose contents are serialized Portable Infobox XML
+			from: null,
+			/*
+			 * In the case of mediawiki storage, this is the article title.
+			 * Otherwise, a string title for the infobox template.
+			 */
+			persistOptions: null,
 
-		// extend the properties
+			routines: [],
+
+			validators: {
+				routines: areValidRoutines
+			}
+		};
+
 		params = Object.assign(defaultProps, params);
 
-		const {from} = params;
+		super(params);
+
+		// extend the properties
+		const {from, routines} = params;
 
 		/*
 		 * If builder is instantiated with a serialized document, we will deconstruct it
@@ -34,7 +42,7 @@ class Core extends Model {
 		 */
 		if (from) {
 
-			const deserialized = deserialize(from);
+			const deserialized = from.deserialize(from.src);
 
 			this.data = deserialized.data;
 			this.theme = deserialized.theme;
@@ -45,20 +53,38 @@ class Core extends Model {
 			this.theme = new InfoboxThemeData();
 		}
 
-		// store config for persistence method
-		this.persistOptions = params.persistOptions;
+		if (routines.length) {
+			this.set('routines', routines);
+		}
 	}
 
 	serialize() {
-		return serialize(this.data, this.theme);
+		const documents = this.routines.map(routine => {
+			return routine.serialize(this.data, this.theme);
+		});
+
+		return documents;
 	}
 
 	save() {
-		const data = this.serialize();
-		return persist(data, this.persistOptions)
-			.then(() => this.emit('save', data))
+		const documents = this.serialize();
+
+		const promises = [];
+
+		for (let i = 0; i < documents.length; i++) {
+			const doc = documents[i];
+			const adapter = this.routines[i];
+			const promise = adapter.persist(doc, adapter.persistOptions);
+
+			promises.push(promise);
+
+			promise
+			.then(() => this.emit('save', doc))
 			.catch((err) => this.emit('errorWhileSaving', err));
 
+		}
+
+		return promises;
 	}
 }
 

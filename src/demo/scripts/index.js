@@ -2,6 +2,7 @@
 
 import {InfoboxTemplateBuilder} from '../../core';
 import {InfoboxData} from '../../models/infobox-data';
+import * as XMLSerializer from '../../serializers/xml/serializer';
 
 window.initializeDemo = initialize;
 
@@ -10,14 +11,24 @@ function initialize() {
 	let demo, infobox;
 
 	try {
+
+		const piAdapter = Object.create(XMLSerializer, {
+			persistOptions: {
+				value: {
+					host: 'http://lizlux.liz.wikia-dev.com',
+					title: 'Template:foobox'
+				}
+			}
+		});
+
 		demo = document.getElementById('demo');
 
 		infobox = new InfoboxTemplateBuilder({
-			from: demo.value,
-			persistOptions: {
-				host: 'http://lizlux.liz.wikia-dev.com',
-				title: 'Template:foobox'
-			}
+			from: {
+				src: demo.value,
+				deserialize: XMLSerializer.deserialize
+			},
+			routines: [piAdapter]
 		});
 
 		infobox.save();
@@ -25,6 +36,7 @@ function initialize() {
 		window.alert('New infobox created');
 
 	} catch (e) {
+
 		console.log(e.stack);
 
 		const err = new Error(e.message || 'Not a valid infobox');
