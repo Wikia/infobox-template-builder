@@ -12,14 +12,13 @@ function initialize() {
 
 	try {
 
-		const piAdapter = Object.create(XMLSerializer, {
+		const piAdapter = {
+			name: 'XMLSerializer',
 			persistOptions: {
-				value: {
-					host: 'http://lizlux.liz.wikia-dev.com',
-					title: 'Template:foobox'
-				}
+				host: 'http://lizlux.liz.wikia-dev.com',
+				title: 'Template:foobox'
 			}
-		});
+		};
 
 		demo = document.getElementById('demo');
 

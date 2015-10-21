@@ -3,20 +3,30 @@
 #### Create a new infbox template builder instance
 All parameters  for `InfoboxTemplateBuilder` are optional, though in order to save to MediaWiki, a title value is required inside the `persistOptions` object. 
 ```javascript
-var infobox = new InfoboxTemplateBuilder({
+let adapter = {
+  name: 'XMLSerializer',
   persistOptions: {
-    title: 'Template:FooBox'
+    value: {
+      title: 'Template:FooBox',
+      host: 'http://lizlux.liz.wikia-dev.com'
+    }
   }
+};
+
+var infobox = new InfoboxTemplateBuilder({
+	routines: [adapter]
 });
 ```
 
 #### Create from existing data
 ```javascript
 var infobox = new InfoboxTemplateBuilder({
-  from: '<infobox><title src="title"></title></infobox>',
-  persistOptions: {
-    title: 'Template:FooBox'
-  }
+  from: {
+	src: '<infobox><title src="title"></title></infobox>',
+    // Because we support multiple serializers, you need to specify which one you want to use to deserialize from
+	deserializeWith: 'XMLSerializer' 
+  },
+  routines: [adapter]
 });
 ```
 

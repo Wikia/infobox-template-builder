@@ -4,6 +4,7 @@ import {InfoboxThemeData} from './models/infobox-theme-data';
 import {InfoboxData} from './models/infobox-data';
 import {Model} from './models/base';
 import {areValidRoutines} from './validators';
+import * as Serializers from './serializers/all';
 
 class Core extends Model {
 
@@ -53,8 +54,18 @@ class Core extends Model {
 			this.theme = new InfoboxThemeData();
 		}
 
-		if (routines.length) {
-			this.set('routines', routines);
+		let len = routines.length;
+
+		if (len) {
+
+			let bootstrappedRoutines = [];
+
+			for (let i = 0; i < len; i++) {
+				let adapter = routines[i];
+				bootstrappedRoutines.push(Object.assign({}, Serializers[adapter.name], adapter));
+			}
+
+			this.set('routines', bootstrappedRoutines);
 		}
 	}
 

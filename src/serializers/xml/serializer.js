@@ -5,13 +5,12 @@ import {InfoboxData} from '../../models/infobox-data';
 import {InfoboxThemeData} from '../../models/infobox-theme-data';
 import {xmlString} from './template';
 import {isString} from '../../validators';
-
 export {persist} from '../../adapters/mediawiki';
 
 Handlebars.registerHelper('equals', equals);
 
 export const attributes = {
-	name: 'pi-xml',
+	name: 'XMLSerializer',
 	version: '0.1.0'
 };
 
