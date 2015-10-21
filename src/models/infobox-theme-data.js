@@ -7,12 +7,12 @@ export class InfoboxThemeData extends Model {
 
 	constructor(properties = {}) {
 		const defaultProperties = {
+			borderColor: null,
+			accentColor: null,
 			validators: {
 				borderColor: isString,
 				accentColor: isString
-			},
-			borderColor: null,
-			accentColor: null
+			}
 		};
 
 		super(Object.assign(defaultProperties, properties));

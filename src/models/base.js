@@ -28,7 +28,11 @@ export class Model {
 		const oldValue = this[propName];
 
 		if (newValue && this.validators[propName]) {
-			this.validateProperty(this.validators[propName], newValue, propName);
+			const isValid = this.validators[propName](newValue);
+
+			if (!isValid) {
+				throw new TypeError(`${propName} did not pass the "${this.validators[propName].name}" validator`);
+			}
 		}
 
 		deepSet.call(this, propName, newValue);
@@ -38,31 +42,14 @@ export class Model {
 			oldValue,
 			newValue
 		});
-
-		if (propName === 'validators') {
-			for (let property in newValue) {
-				if (this.get(property) !== undefined || this.get(property) !== null) {
-					let validator = newValue[property];
-					this.validateProperty(validator, property, this.get(property));
-				}
-
-
-				console.log(property);
-				console.log(newValue[property]);
-			}
-		}
-
-	}
-
-	validateProperty(validator, propName, value) {
-		const isValid = validator(value);
-
-		if (!isValid) {
-			throw new TypeError(`${propName} did not pass the "${validator.name}" validator`);
-		}
 	}
 
 	setProperties(properties) {
+		// Need to set validators before the rest of the properties
+		if (Object.keys(properties).find(key => key === 'validators')) {
+			this.set('validators', properties['validators']);
+		}
+
 		for (let prop in properties) {
 			this.set(prop, properties[prop]);
 		}
