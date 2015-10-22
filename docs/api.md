@@ -1,17 +1,16 @@
 # Public API
 
 #### Create a new infbox template builder instance
-All parameters  for `InfoboxTemplateBuilder` are optional, though in order to save to MediaWiki, a title value is required inside the `persistOptions` object. 
+We can create a completely new infobox or bootstrap it from an existing document.
 
 ```javascript
 var adapter = {
-  name: 'XMLSerializer',
-  persistOptions: {
-    value: {
-      title: 'Template:FooBox',
-      host: 'http://lizlux.liz.wikia-dev.com'
-    }
-  }
+	name: 'XMLSerializer',
+	persistOptions: {
+		// Implementation specific persistence parameters
+		title: 'Template:FooBox',
+		host: 'http://lizlux.liz.wikia-dev.com'
+	}
 };
 
 var infobox = new InfoboxTemplateBuilder({
@@ -49,6 +48,7 @@ var infobox = new InfoboxTemplateBuilder();
 var title = infobox.data.newElement('Title', {
 	boundVariableName: 'title'
 });
+
 infobox.data.add(title);
 
 // create and add an image
@@ -58,6 +58,7 @@ var img = infoData.newElement('Image', {
 		boundVariableName: 'image_caption'
 	})
 });
+
 infobox.data.add(image);
 ```
 

@@ -15,13 +15,9 @@ class Core extends Model {
 			dataOptions: null,
 			// Options to be passed to InfoboxThemeData constructor
 			themeOptions: null,
-			// The 'from' property's value is a string whose contents are serialized Portable Infobox XML
+			// The 'from' param is an object containing the source document and the name of the serializer to
+			// deserialize the document with
 			from: null,
-			/*
-			 * In the case of mediawiki storage, this is the article title.
-			 * Otherwise, a string title for the infobox template.
-			 */
-			persistOptions: null,
 
 			routines: [],
 
@@ -43,7 +39,8 @@ class Core extends Model {
 		 */
 		if (from) {
 
-			const deserialized = from.deserialize(from.src);
+			let deserialize = Serializers[from.deserializeWith].deserialize;
+			const deserialized = deserialize(from.src);
 
 			this.data = deserialized.data;
 			this.theme = deserialized.theme;
@@ -54,13 +51,11 @@ class Core extends Model {
 			this.theme = new InfoboxThemeData();
 		}
 
-		let len = routines.length;
-
-		if (len) {
+		if (routines.length) {
 
 			let bootstrappedRoutines = [];
 
-			for (let i = 0; i < len; i++) {
+			for (let i = 0; i < routines.length; i++) {
 				let adapter = routines[i];
 				bootstrappedRoutines.push(Object.assign({}, Serializers[adapter.name], adapter));
 			}
