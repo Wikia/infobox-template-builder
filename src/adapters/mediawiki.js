@@ -19,6 +19,10 @@ export function persist(xmlString, options) {
 		throw new TypeError('Infobox title and xml are required for saving to MediaWiki');
 	}
 
+	if (!isString(options.host)) {
+		throw new TypeError('Options must contain a host to save to');
+	}
+
 	return getEditToken(options)
 			.then(save.bind(null, xmlString, options));
 }
@@ -30,7 +34,7 @@ export function persist(xmlString, options) {
  * @param editToken {string} Needed for authenticating request
  * @return {Promise}
  */
-function save(xmlString, options, editToken) {
+export function save(xmlString, options, editToken) {
 	return new Promise(function (resolve, reject) {
 		xhrPost((options.host || '') + '/api.php', {
 			data: {
@@ -61,7 +65,7 @@ function save(xmlString, options, editToken) {
  * @param options {object} Persist options including title and optional host for getting edit token
  * @return {Promise}
  */
-function getEditToken(options) {
+export function getEditToken(options) {
 	return new Promise(function (resolve, reject) {
 		xhrPost((options.host || '') + '/api.php', {
 			data: {
