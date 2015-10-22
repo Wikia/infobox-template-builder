@@ -11,13 +11,9 @@ function initialize() {
 	let demo, infobox;
 
 	try {
-		InfoboxTemplateBuilder.registerAdapter({
-  attributes: {name: 'Dang', version: 'ds'},
-  serialize: function() {}, deserialize: function() {}, persist: function () {}, persistOptions: {}
-});
 
 		const piAdapter = {
-			name: 'Dang',
+			name: 'XMLSerializer',
 			persistOptions: {
 				host: 'http://lizlux.liz.wikia-dev.com',
 				title: 'Template:foobox'
