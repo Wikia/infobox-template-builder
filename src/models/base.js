@@ -45,6 +45,11 @@ export class Model {
 	}
 
 	setProperties(properties) {
+		// Need to set validators before the rest of the properties
+		if (Object.keys(properties).find(key => key === 'validators')) {
+			this.set('validators', properties['validators']);
+		}
+
 		for (let prop in properties) {
 			this.set(prop, properties[prop]);
 		}

@@ -1,12 +1,29 @@
-/* global beforeEach, describe, expect, it */
 'use strict';
 
 import {Model} from './base';
+import {isString} from '../validators';
 
-QUnit.module('my example tests');
 
-QUnit.test('Model', function(assert) {
-     var expected = 'Hello Foo';
-	 var itb = new Model();
-     assert.ok(true);
+QUnit.module('Model');
+
+QUnit.test('Model constructor', function(assert) {
+     var model = new Model();
+
+     assert.ok(model !== null);
+});
+
+QUnit.test('Model extendValidation, set, and get', function(assert) {
+	 var properties = {'validators': {'testKey': isString}};
+
+	 var model = new Model(properties);
+
+	 try {
+	 	model.set('testKey', 4);
+	 } catch (e) {
+	 	assert.ok(e instanceof TypeError, 'Setting an invalid type should throw a TypeError');
+	 }
+	 assert.strictEqual(model.get('testKey'), undefined, 'nothing should be set with an invalid type');
+
+	 model.set('testKey', 'testValue');
+	 assert.strictEqual(model.get('testKey'), 'testValue', 'Getting and setting should work with valid property');
 });

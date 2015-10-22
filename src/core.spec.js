@@ -1,12 +1,10 @@
-/* global beforeEach, describe, expect, it */
 'use strict';
 
 import {InfoboxTemplateBuilder} from './core';
 
-QUnit.module('my example tests');
+QUnit.module('Core');
 
-QUnit.test('will this work?', function(assert) {
-     var expected = 'Hello Foo';
-	 var itb = new InfoboxTemplateBuilder();
+QUnit.test('save', function(assert) {
+	 var builder = new InfoboxTemplateBuilder();
      assert.ok(true);
 });
