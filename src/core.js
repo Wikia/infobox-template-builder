@@ -3,7 +3,7 @@
 import {InfoboxThemeData} from './models/infobox-theme-data';
 import {InfoboxData} from './models/infobox-data';
 import {Model} from './models/base';
-import {areValidRoutines} from './validators';
+import {isValidAdapter, areValidRoutines} from './validators';
 import * as Serializers from './serializers/all';
 
 class Core extends Model {
@@ -66,6 +66,14 @@ class Core extends Model {
 			}
 
 			this.set('routines', bootstrappedRoutines);
+		}
+	}
+
+	static registerAdapter(adapter) {
+		if (isValidAdapter(adapter)) {
+			Serializers[adapter.attributes.name] = adapter;
+		} else {
+			throw Error('Invalid adapter', adapter);
 		}
 	}
 

@@ -1,10 +1,31 @@
 # Serialization
 
-Serialization methods live in the [src/serializers](../src/serializers) directory. Each serializer in that directory should contain a `serialize` and `desrialize` method. 
+## Anatomy of a serializer
+Provided serialization methods live in the [src/serializers](../src/serializers) directory. Each serializer in that directory should expose a `serialize` and `deserialize` method, as well as an `attributes` property containing the name and version of the serializer. 
 
-`serialize` takes two arguments: an instance of `InfoboxData` and an instance of `InfoboxThemeData`, and returns a serialized string that can be stored in a database. 
+Example serializer:
+```es6
+{
+	attributes: {
+		name: 'FooSerializer',
+		version: '0.1.0'
+	},
+	serialize: function () {}, // Returns data serialized to intended target's format
+	deserialize: function () {}, // Returns a object to be consumed by the builder
+	persist: function () {} // returns a Promise
+}
+```
 
-`deserilize` takes one argument: a string representation of the data. It returns an object containing a new `InfoboxData` instance and a new `InfoboxThemeData` instance. 
+## Serializer Methods
+
+### serialize(data: InfoboxData, theme: InfoboxThemeData): any
+Implement the `serialize` method to contain the specific logic to transform data for your persistence target.
+
+### deserialize(doc: string): {data: InfoboxData, theme: InfoboxThemeData}
+`deserialize` takes one argument: a string representation of the data. It returns an object containing a new `InfoboxData` instance and a new `InfoboxThemeData` instance. 
+
+### persist(doc: any, persistOptions: any): Promise
+`persist` takes a document, and an arbitary options object. When building a serializer, you can re-export an existing persistence adapter or implement your own.
 
 #### Example
 ```javascript

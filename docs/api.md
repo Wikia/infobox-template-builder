@@ -2,8 +2,9 @@
 
 #### Create a new infbox template builder instance
 All parameters  for `InfoboxTemplateBuilder` are optional, though in order to save to MediaWiki, a title value is required inside the `persistOptions` object. 
+
 ```javascript
-let adapter = {
+var adapter = {
   name: 'XMLSerializer',
   persistOptions: {
     value: {

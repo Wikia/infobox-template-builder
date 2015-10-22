@@ -11,7 +11,6 @@ export function isObject(input) {
 }
 
 export function isValidAdapter(input) {
-	debugger;
 	return (
 		isObject(input.attributes) &&
 		isObject(input.persistOptions) &&
