@@ -1,4 +1,3 @@
-/* global beforeEach, describe, expect, it */
 'use strict';
 
 import {InfoboxTemplateBuilder} from './core';

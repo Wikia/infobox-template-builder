@@ -5,8 +5,18 @@ import {persist} from './mediawiki';
 QUnit.module('Adapter');
 
 QUnit.test('MediaWiki persist()', function(assert) {
-	var data = 'foo';
-	var promise = persist(data);
+	var foo = function(func){
+		return function() { return func(); };
+	}
 
-	assert.ok(promise instanceof Promise, 'Persist() should return a promise');
+	var myAPI = { method: function () {} };
+    var mock = sinon.mock(myAPI);
+    mock.expects("method").once().returns(42);
+
+    var proxy = foo(myAPI.method);
+
+    assert.equal(proxy(), 42);
+    mock.verify();
+
+	assert.ok(true);
 });

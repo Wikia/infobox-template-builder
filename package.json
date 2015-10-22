@@ -35,6 +35,7 @@
     "karma-jspm": "^2.0.1",
     "karma-phantomjs-launcher": "^0.2.1",
     "karma-qunit": "^0.1.5",
+    "karma-sinon": "^1.0.4",
     "karma-sourcemap-loader": "^0.3.5",
     "phantomjs": "^1.9.17",
     "qunitjs": "^1.19.0"
