@@ -34,7 +34,7 @@ export function persist(xmlString, options) {
  * @param editToken {string} Needed for authenticating request
  * @return {Promise}
  */
-export function save(xmlString, options, editToken) {
+function save(xmlString, options, editToken) {
 	return new Promise(function (resolve, reject) {
 		xhrPost((options.host || '') + '/api.php', {
 			data: {
@@ -48,7 +48,7 @@ export function save(xmlString, options, editToken) {
 				const xhr = event.target;
 				const response = JSON.parse(xhr.responseText);
 				if (response.edit && response.edit.result === 'Success') {
-					resolve();
+					resolve(response);
 				} else if (response.error) {
 					reject(response.error.code);
 				} else {
@@ -65,7 +65,7 @@ export function save(xmlString, options, editToken) {
  * @param options {object} Persist options including title and optional host for getting edit token
  * @return {Promise}
  */
-export function getEditToken(options) {
+function getEditToken(options) {
 	return new Promise(function (resolve, reject) {
 		xhrPost((options.host || '') + '/api.php', {
 			data: {
