@@ -19,6 +19,10 @@ export function persist(xmlString, options) {
 		throw new TypeError('Infobox title and xml are required for saving to MediaWiki');
 	}
 
+	if (!isString(options.host)) {
+		throw new TypeError('Options must contain a host to save to');
+	}
+
 	return getEditToken(options)
 			.then(save.bind(null, xmlString, options));
 }
@@ -44,7 +48,7 @@ function save(xmlString, options, editToken) {
 				const xhr = event.target;
 				const response = JSON.parse(xhr.responseText);
 				if (response.edit && response.edit.result === 'Success') {
-					resolve();
+					resolve(response);
 				} else if (response.error) {
 					reject(response.error.code);
 				} else {
