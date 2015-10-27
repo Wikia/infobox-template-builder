@@ -2,7 +2,21 @@ import {deepSet, copyArray, swapArrayElements, serializeRequestData, xhrPost} fr
 
 'use strict';
 
-QUnit.module('utils');
+QUnit.module('utils', {
+	beforeEach() {
+		let requests = this.requests = [];
+
+		this.xhr = sinon.useFakeXMLHttpRequest();
+
+		this.xhr.onCreate = function (xhr) {
+			requests.push(xhr);
+		};
+	},
+
+	afterEach() {
+		this.xhr.restore();
+	}
+});
 
 QUnit.test('deep set', (assert) => {
 	deepSet('foo', 'bar');
@@ -44,8 +58,19 @@ QUnit.test('serialize request data', (assert) => {
 	assert.strictEqual(string, 'foo=bar&baz%3F=qux%26', 'data should be serialized and encoded');
 });
 
-QUnit.test('xhr helper function', (assert) => {
+QUnit.test('xhr helper function', function (assert) {
+	xhrPost('/api.php', {
+		data: {
+			title: 'foo'
+		},
+		success: sinon.spy,
+		fail: sinon.spy
+	});
+
+	assert.strictEqual(1, this.requests.length, 'one request should have been made');
+	assert.strictEqual(this.requests[0].url, '/api.php', 'request should have the correct url');
+
 	assert.throws(() => {
-		xhrPost(1)
+		xhrPost()
 	}, TypeError, 'xhrPost must be passed a string as the first argument');
 });
