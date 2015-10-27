@@ -25,7 +25,7 @@ function initialize() {
 		infobox = new InfoboxTemplateBuilder({
 			from: {
 				src: demo.value,
-				deserialize: XMLSerializer.deserialize
+				deserializeWith: 'XMLSerializer'
 			},
 			routines: [piAdapter]
 		});

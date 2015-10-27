@@ -8,7 +8,6 @@ module.exports = function (config) {
 		frameworks: ['jspm', 'qunit', 'sinon'],
 
 		files: [
-			'node_modules/karma-babel-preprocessor/node_modules/babel-core/browser-polyfill.js'
 		],
 
 		jspm: {

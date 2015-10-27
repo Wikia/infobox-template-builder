@@ -26,6 +26,7 @@ export function isFunction(input) {
 }
 
 export function areValidRoutines(input) {
+	debugger;
 	if (!isNumeric(input.length)) {
 		return false;
 	}
